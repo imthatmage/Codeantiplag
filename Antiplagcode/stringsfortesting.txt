@@ -1,0 +1,145 @@
+#include <iostream>
+#include <list>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <iterator>
+#include <utility>
+ 
+std::vector<std::vector<int> > graph;
+std::set<std::list<int> > routs; // все найденные пути между заданной парой вершин
+std::list<int> path; // найденный путь
+std::set<std::set<int>> ribs; // рёбра
+ 
+// поиск в глубину
+void dfs(int const& nodeCur, int const& nodeLast)
+{
+    path.emplace_back(nodeCur);
+ 
+    if (nodeCur == nodeLast)
+    {
+        for (auto const& val : path)
+        {
+            //std::cout << val << "  ";
+        }
+        //std::cout << std::endl;
+        routs.emplace(path);
+        path.pop_back();
+        return;
+    }
+ 
+    for (auto const& val : graph.at(nodeCur - 1))
+    {
+        std::set<int> rib = { nodeCur, val };
+        if (ribs.find(rib) == ribs.end())
+        {
+            ribs.emplace(rib);
+            dfs(val, nodeLast);
+            ribs.erase(ribs.find(rib));
+        }
+    }
+    path.pop_back();
+}
+ 
+int main()
+{
+    // заполнение графа как списка смежности
+    graph.emplace_back(std::vector<int>({ 2, 7, 9 }));
+    graph.emplace_back(std::vector<int>({ 1, 3 }));
+    graph.emplace_back(std::vector<int>({ 4, 2, 6, 5 }));
+    graph.emplace_back(std::vector<int>({ 3, 5 }));
+    graph.emplace_back(std::vector<int>({ 6, 3, 4 }));
+    graph.emplace_back(std::vector<int>({ 3, 5 }));
+    graph.emplace_back(std::vector<int>({ 1, 8 }));
+    graph.emplace_back(std::vector<int>({ 7, 9 }));
+    graph.emplace_back(std::vector<int>({ 1, 8 }));
+ 
+    // пара вершин
+    std::pair<int, int> nodes(5, 2);
+ 
+    // поиск всех путей между парой вершин
+    dfs(nodes.first, nodes.second);
+ 
+ 
+    /* все возможные пути между заданной парой вершин сохранены в контейнере routs. */
+    for (auto const& lst : routs)
+    {
+        for (auto const& node : lst)
+        {
+            std::cout << node << "  ";
+        }
+        std::cout << std::endl;
+    }
+    /* ДА ты изведаешься со своими комментариями
+        Да Да ты
+        */
+    int      amson   =342;
+    int jh= amson<2;
+    amson*=       jh *    345;
+    //операторы    
+    1 a=3
+    2 b + 4
+    3 mass-4
+    4 c* 3
+    5 d/ 45
+    6 e %56
+    7 ++ f
+    8 --g
+    9 ! h
+    10 h && i
+    11 i||j
+    12 ~k
+    13 &   l
+    14 |  m
+    15 ^n
+    16 <<o
+    17 >>   p
+    18 q+=  n
+    19 r   -=j
+    20 s*= 56
+    21 t /=453
+    22 u %=  891
+    23 v &=o
+    24 w   |= 345
+    25 x^=3
+    26 y <<= f
+    27 z>>= 3
+    28 mass[a][b]
+    29 mass   [31]   [210]
+    30 massive[43][32]
+    31 *k
+    32 *     l
+    33 &  j
+    34 &d
+    35 a-> k
+    36 kop  ->l
+    37 a.   b
+    38 k.h
+    39 (  a   ,   b  )
+    40 g (a1,   b1)
+    41 a   ? b    :   c
+    42 j  :: h
+    43 j:: h
+    44 j::h
+    45 delete[] n
+    56 delete   []   j
+    57 std::vector<   std::vector<    int  >    > tmper func ( int a,   int b )  {int b=c;}
+    59 some tests
+    static std :: string m_str;
+    void func (   int a    , int b   )
+    {
+        std::cout    <<      "Fafa";
+        int mass     [3] = {1, 2, 3};
+        std::cout << mass       [   0     ];
+        std::string tmp0="331";
+        std::string tmp1   ="331";
+        int aa = 3;
+        int bb=      45;
+        int     c  = b *   a +    4;
+        c   *= c  = b *   a +    4;
+        ++       aa;
+        int massd[1][1] = {{2}};
+        int g = massd[0]     [0];
+    }
+    return 0;
+}
