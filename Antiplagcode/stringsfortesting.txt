@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <list>
 #include <vector>
 #include <set>
@@ -6,9 +6,9 @@
 #include <iterator>
 #include <utility>
  
-std::vector<std::vector<int> > graph;
-std::set<std::list<int> > routs; // все найденные пути между заданной парой вершин
-std::list<int> path; // найденный путь
+static      const std::vector<std::vector<int> > graph;
+static const     std::  set<std::list<int> > routs; // все найденные пути между заданной парой вершин
+const std::list<int> path; // найденный путь
 std::set<std::set<int>> ribs; // рёбра
  
 // поиск в глубину
