@@ -1,17 +1,17 @@
-п»ї#include <iostream>
+#include <iostream>
 #include <list>
 #include <vector>
 #include <set>
 #include <algorithm>
 #include <iterator>
 #include <utility>
+template<typename T>class CLS{};
  
-static      const std::vector<std::vector<int> > graph;
-static const     std::  set<std::list<int> > routs; // РІСЃРµ РЅР°Р№РґРµРЅРЅС‹Рµ РїСѓС‚Рё РјРµР¶РґСѓ Р·Р°РґР°РЅРЅРѕР№ РїР°СЂРѕР№ РІРµСЂС€РёРЅ
-const std::list<int> path; // РЅР°Р№РґРµРЅРЅС‹Р№ РїСѓС‚СЊ
-std::set<std::set<int>> ribs; // СЂС‘Р±СЂР°
+static const     std::  set<std::list<int> > routs; // все найденные пути между заданной парой вершин
+const std::list<int> path; // найденный путь
+std::set<std::set<int>> ribs; // рёбра
  
-// РїРѕРёСЃРє РІ РіР»СѓР±РёРЅСѓ
+// поиск в глубину
 void dfs(int const& nodeCur, int const& nodeLast)
 {
     path.emplace_back(nodeCur);
@@ -43,7 +43,7 @@ void dfs(int const& nodeCur, int const& nodeLast)
  
 int main()
 {
-    // Р·Р°РїРѕР»РЅРµРЅРёРµ РіСЂР°С„Р° РєР°Рє СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
+    // заполнение графа как списка смежности
     graph.emplace_back(std::vector<int>({ 2, 7, 9 }));
     graph.emplace_back(std::vector<int>({ 1, 3 }));
     graph.emplace_back(std::vector<int>({ 4, 2, 6, 5 }));
@@ -54,14 +54,14 @@ int main()
     graph.emplace_back(std::vector<int>({ 7, 9 }));
     graph.emplace_back(std::vector<int>({ 1, 8 }));
  
-    // РїР°СЂР° РІРµСЂС€РёРЅ
+    // пара вершин
     std::pair<int, int> nodes(5, 2);
  
-    // РїРѕРёСЃРє РІСЃРµС… РїСѓС‚РµР№ РјРµР¶РґСѓ РїР°СЂРѕР№ РІРµСЂС€РёРЅ
+    // поиск всех путей между парой вершин
     dfs(nodes.first, nodes.second);
  
  
-    /* РІСЃРµ РІРѕР·РјРѕР¶РЅС‹Рµ РїСѓС‚Рё РјРµР¶РґСѓ Р·Р°РґР°РЅРЅРѕР№ РїР°СЂРѕР№ РІРµСЂС€РёРЅ СЃРѕС…СЂР°РЅРµРЅС‹ РІ РєРѕРЅС‚РµР№РЅРµСЂРµ routs. */
+    /* все возможные пути между заданной парой вершин сохранены в контейнере routs. */
     for (auto const& lst : routs)
     {
         for (auto const& node : lst)
@@ -70,13 +70,13 @@ int main()
         }
         std::cout << std::endl;
     }
-    /* Р”Рђ С‚С‹ РёР·РІРµРґР°РµС€СЊСЃСЏ СЃРѕ СЃРІРѕРёРјРё РєРѕРјРјРµРЅС‚Р°СЂРёСЏРјРё
-        Р”Р° Р”Р° С‚С‹
+    /* ДА ты изведаешься со своими комментариями
+        Да Да ты
         */
     int      amson   =342;
     int jh= amson<2;
     amson*=       jh *    345;
-    //РѕРїРµСЂР°С‚РѕСЂС‹    
+    //операторы    
     1 a=3
     2 b + 4
     3 mass-4
