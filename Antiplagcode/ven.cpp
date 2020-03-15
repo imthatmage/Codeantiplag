@@ -10,8 +10,9 @@ static std::string m_str = "";
 int main()
 {
 	std::set<std::string> set_of_spec_words = { "void", "bool", "char", "signed", "unsigned", "wchar_t", "char16_t", "char32_t", "short", "const",
-	"int", "long", "unsigned", "auto", "sizeof", "string", "set", "queue", "deque", "vector", "list",  "delete", "new", "print", "begin", "end", "malloc", 
+	"int", "long", "unsigned", "auto", "sizeof", "string", "set", "queue", "deque", "vector", "list", "forward_list", "delete", "new", "print", "begin", "end", "malloc", 
 	"calloc", "realloc", "if", "while", "for", "do", "using", "namespace", "break", "continue", "return", "true", "false", "class", "struct", "template"
+
 	};
 	std::set<std::string> set_of_methods_and_fields = { "assign", "at", "front", "back", "data", "c_str", "begin", "end", "empty", "size", "length",
 	"max_size", "reserve", "capacity", "shrink_to_fit", "clear", "insert", "erase", "push_back", "pop_back", "append", "compare", "replace", "substr",
