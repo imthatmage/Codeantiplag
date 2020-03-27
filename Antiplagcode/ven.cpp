@@ -16,7 +16,16 @@ int main()
 	};
 	
 	// 
-	std::set<std::string> set_of_standard_functions = { "malloc", "realloc", "calloc", "sizeof", "sort", "reverse", "fill" };
+	std::set<std::string> set_of_standard_functions = { "malloc", "realloc", "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
+	"for_each", "for_each_n", "count", "count_if", "mismatch", "equal", "adjacent_find", "find", "find_if", "find_if_not", "find_end", "find_first_of", 
+	"search", "search_n", "lexicographical_compare", "lexicographical_compare_three_way", "copy", "copy_if", "copy_n", "copy_backward", "move", 
+	"move_backward", "shift_left", "shift_right", "transform", "fill", "fill_n", "generate", "generate_n", "swap", "iter_swap", "swap_ranges", 
+	"sample", "remove", "remove_if", "replace", "replace_if", "reverse", "rotate", "unique", "is_sorted", "is_sorted_until", "sort", "stable_sort", 
+	"partial_sort", "partial_sort_copy", "nth_element", "max", "merge", "max_element", "min", "min_element", "minmax", "minmax_element", "clamp", 
+	"is_permutation", "next_permutation", "prev_permutation", "iota", "inner_product", "adjacent_difference", "accumulate", "reduce", "transform_reduce",
+	"partial_sum", "inclusive_scan", "exclusive_scan", "transform_inclusive_scan", "transform_exclusive_scan", "qsort", "bsearch", "random_shuffle",
+	"remove_copy", "remove_copy_if", "replace_copy", "replace_copy_if", "reverse_copy", "rotate_copy", "unique_copy", "shuffle" };
+	
 	std::set<std::string> set_of_methods_and_fields = { "assign", "at", "front", "back", "data", "c_str", "begin", "end", "empty", "size", "length",
 	"max_size", "reserve", "capacity", "shrink_to_fit", "clear", "insert", "erase", "push_back", "pop_back", "append", "compare", "replace", "substr",
 	"copy", "resize", "swap", "find", "rfind", "find_first_of", "find_first_not_of", "find_last_of", "find_last_not_of", "getline", "get", "fill", "emplace",
@@ -72,6 +81,10 @@ int main()
 		else if(current == "(")
 		{
 			
+		}
+		else
+		{
+			//rename
 		}
 	}
 }
