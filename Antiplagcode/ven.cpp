@@ -10,13 +10,10 @@ static std::string m_str = "";
 int main()
 {
 	std::set<std::string> set_of_spec_words = { "void", "bool", "char", "signed", "unsigned", "wchar_t", "char16_t", "char32_t", "short", "const",
-	"int", "long", "unsigned", "auto", "string", "set", "queue", "deque", "vector", "list", "forward_list", "delete", "new", "print",  
-	 "if", "while", "for", "do", "using", "namespace", "break", "continue", "return", "true", "false", "class", "struct", "template"
-
-	};
-	
-	// 
-	std::set<std::string> set_of_standard_functions = { "malloc", "realloc", "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
+	"int", "long", "unsigned", "auto", "string", "delete", "new", "if", "while", "for", "do", "using", "namespace", "break", "continue", "return",
+	"true", "false", "class", "struct", "template" };
+	//"set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", "priority_queue"
+	std::set<std::string> set_of_standard_functions = { "malloc", "realloc", "printf", "scanf" "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
 	"for_each", "for_each_n", "count", "count_if", "mismatch", "equal", "adjacent_find", "find", "find_if", "find_if_not", "find_end", "find_first_of", 
 	"search", "search_n", "lexicographical_compare", "lexicographical_compare_three_way", "copy", "copy_if", "copy_n", "copy_backward", "move", 
 	"move_backward", "shift_left", "shift_right", "transform", "fill", "fill_n", "generate", "generate_n", "swap", "iter_swap", "swap_ranges", 
@@ -31,7 +28,8 @@ int main()
 	"copy", "resize", "swap", "find", "rfind", "find_first_of", "find_first_not_of", "find_last_of", "find_last_not_of", "getline", "get", "fill", "emplace",
 	"emplace_back", "insert_after", "emplace_after", "erase_after", "push_front", "emplace_front", "pop_front", "resize", "merge", "splice_after", "remove", 
 	"remove_if", "reverse", "unique", "sort", "splice", "emplace_hint", "extract", "count", "contains", "equal_range", "lower_bound", "upper_bound", "top"
-	"push", "pop", "front", "back", "begin", "end"};
+	"push", "pop", "front", "back", "begin", "end" };
+	
 	//C:\\Users\\Hindgarden\\source\\repos\\antiplag\\Antiplagcode\\stringsfortesting.txt
 	std::cout << "Give exact path to file to check";
 	std::string tmp;
@@ -66,25 +64,45 @@ int main()
 	size_t curr_pos = 1;
 	std::string new_str = "";
 	//replacement of names with standard
+	unsigned int id = 0;
+	std::map<std::string, std::string> words_id;
 	while((index = m_str.find(' ', curr_pos)) != std::string::npos)
 	{
 		current = m_str.substr(curr_pos, index - curr_pos);
 		curr_pos = index + 1;
-		if(before == ".")
-		{
-			if(set_of_methods_and_fields.find(current) != set_of_methods_and_fields.end())
-			{
-				new_str += before + ' ' + current + " (" + ' ';
-				curr_pos += 2;
-			}
-		}
-		else if(current == "(")
-		{
-			
-		}
+		if(before == "") before = current;
 		else
 		{
-			//rename
+			auto iterator = words_id.find(before);
+			if(iterator != words_id.end())
+			{
+				new_str += iterator->second + ' ';
+				before = current;
+			}
+			else if(set_of_spec_words.find(before) != set_of_spec_words.end())
+			{
+				new_str += before + ' ';
+				before = current;
+			}
+			else if((before == "." && set_of_methods_and_fields.find(current) != set_of_methods_and_fields.end())
+				||(current == "(" && set_of_standard_functions.find(before) != set_of_methods_and_fields.end()))
+			{
+				new_str += before + ' ' + current + ' ';
+				before = "";
+			}
+			else
+			{
+				std::string tmperid = std::to_string(id++);
+				std::string tmper = "";
+				for(size_t i = 0; i < (6 - tmperid.length()); ++i)
+				{
+					tmper += '0';
+				}
+				tmper = "ID" + tmper + tmperid;
+				words_id[before] = tmper;
+				new_str += tmper + ' ';
+				before = current;
+			}
 		}
 	}
 }
