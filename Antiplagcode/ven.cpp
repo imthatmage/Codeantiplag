@@ -9,9 +9,7 @@ static std::string m_str = "";
 
 int main()
 {
-	std::set<std::string> set_of_spec_words = { "void", "bool", "char", "signed", "unsigned", "wchar_t", "char16_t", "char32_t", "short", "const",
-	"int", "long", "unsigned", "auto", "string", "delete", "new", "if", "while", "for", "do", "using", "namespace", "break", "continue", "return",
-	"true", "false", "class", "struct", "template" };
+	
 	//"set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", "priority_queue"
 	std::set<std::string> set_of_standard_functions = { "malloc", "realloc", "printf", "scanf" "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
 	"for_each", "for_each_n", "count", "count_if", "mismatch", "equal", "adjacent_find", "find", "find_if", "find_if_not", "find_end", "find_first_of", 
@@ -65,7 +63,12 @@ int main()
 	std::string new_str = "";
 	//replacement of names with standard
 	unsigned int id = 0;
-	std::map<std::string, std::string> words_id;
+
+	std::map<std::string, std::string> words_id = { { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
+	{ "wchar_t", "wchar_t" }, { "char16_t", "char16_t" }, { "char32_t", "char32_t" }, { "short", "short" }, { "const", "const" }, { "int", "int" }, { "long", "long" },
+	{ "auto", "auto" }, { "string", "string" }, { "delete", "delete" }, { "new", "new" }, { "if", "if" }, { "while", "while" }, { "for", "for" }, { "do", "do" },
+	{ "using", "using" }, { "namespace", "namespace" }, { "break", "break" }, { "continue", "continue" }, { "return", "return" }, { "true", "true" }, 
+	{ "false", "false"}, { "class", "class" }, { "struct", "struct" }, { "template", "template" } };
 	while((index = m_str.find(' ', curr_pos)) != std::string::npos)
 	{
 		current = m_str.substr(curr_pos, index - curr_pos);
