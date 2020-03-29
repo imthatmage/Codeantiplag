@@ -9,8 +9,17 @@ static std::string m_str = "";
 
 int main()
 {
-	
-	//"set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", "priority_queue"
+	//dict of special symbols and all 'id words' in text'
+	std::map<std::string, std::string> words_id = { { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
+	{ "wchar_t", "wchar_t" }, { "char16_t", "char16_t" }, { "char32_t", "char32_t" }, { "short", "short" }, { "const", "const" }, { "int", "int" }, { "long", "long" },
+	{ "auto", "auto" }, { "string", "string" }, { "delete", "delete" }, { "new", "new" }, { "if", "if" }, { "while", "while" }, { "for", "for" }, { "do", "do" },
+	{ "using", "using" }, { "namespace", "namespace" }, { "break", "break" }, { "continue", "continue" }, { "return", "return" }, { "true", "true" }, 
+	{ "false", "false"}, { "class", "class" }, { "struct", "struct" }, { "template", "template" } };
+
+	std::set<std::string> set_of_stlcontainers = { "set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", 
+	"priority_queue" };
+
+	//before ()
 	std::set<std::string> set_of_standard_functions = { "malloc", "realloc", "printf", "scanf" "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
 	"for_each", "for_each_n", "count", "count_if", "mismatch", "equal", "adjacent_find", "find", "find_if", "find_if_not", "find_end", "find_first_of", 
 	"search", "search_n", "lexicographical_compare", "lexicographical_compare_three_way", "copy", "copy_if", "copy_n", "copy_backward", "move", 
@@ -21,6 +30,8 @@ int main()
 	"partial_sum", "inclusive_scan", "exclusive_scan", "transform_inclusive_scan", "transform_exclusive_scan", "qsort", "bsearch", "random_shuffle",
 	"remove_copy", "remove_copy_if", "replace_copy", "replace_copy_if", "reverse_copy", "rotate_copy", "unique_copy", "shuffle" };
 	
+
+	//after dot(.)
 	std::set<std::string> set_of_methods_and_fields = { "assign", "at", "front", "back", "data", "c_str", "begin", "end", "empty", "size", "length",
 	"max_size", "reserve", "capacity", "shrink_to_fit", "clear", "insert", "erase", "push_back", "pop_back", "append", "compare", "replace", "substr",
 	"copy", "resize", "swap", "find", "rfind", "find_first_of", "find_first_not_of", "find_last_of", "find_last_not_of", "getline", "get", "fill", "emplace",
@@ -64,11 +75,7 @@ int main()
 	//replacement of names with standard
 	unsigned int id = 0;
 
-	std::map<std::string, std::string> words_id = { { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
-	{ "wchar_t", "wchar_t" }, { "char16_t", "char16_t" }, { "char32_t", "char32_t" }, { "short", "short" }, { "const", "const" }, { "int", "int" }, { "long", "long" },
-	{ "auto", "auto" }, { "string", "string" }, { "delete", "delete" }, { "new", "new" }, { "if", "if" }, { "while", "while" }, { "for", "for" }, { "do", "do" },
-	{ "using", "using" }, { "namespace", "namespace" }, { "break", "break" }, { "continue", "continue" }, { "return", "return" }, { "true", "true" }, 
-	{ "false", "false"}, { "class", "class" }, { "struct", "struct" }, { "template", "template" } };
+	
 	while((index = m_str.find(' ', curr_pos)) != std::string::npos)
 	{
 		current = m_str.substr(curr_pos, index - curr_pos);
@@ -80,11 +87,6 @@ int main()
 			if(iterator != words_id.end())
 			{
 				new_str += iterator->second + ' ';
-				before = current;
-			}
-			else if(set_of_spec_words.find(before) != set_of_spec_words.end())
-			{
-				new_str += before + ' ';
 				before = current;
 			}
 			else if((before == "." && set_of_methods_and_fields.find(current) != set_of_methods_and_fields.end())
