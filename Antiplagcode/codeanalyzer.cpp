@@ -71,4 +71,8 @@ namespace Analyzer
 		||(current == "(" && set_of_standard_functions.find(before) != set_of_standard_functions.end())
 		|| (current == "<" && set_of_stlcontainers.find(before) != set_of_stlcontainers.end()));
     }
+    void insert_to_words_id(const std::string& m_str, const std::string& str)
+    {
+        words_id[str] = m_str;
+    }
 }
