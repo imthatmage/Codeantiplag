@@ -6,6 +6,18 @@
 #include <set>
 
 static std::string m_str = "";
+class Analyzer
+{
+	
+
+
+	//to delete comments, static, std::
+	const std::regex reg0 = std::regex("(?://.*?\n)|(?:/\\*(?:.|\n)*?\\*/)|(?:#.*)|(?:std.*?\\:\\:)|(?:static)");
+	//to distinguish all operators with space
+	const std::regex reg1 = std::regex("(?:\\>\\>=)|(?:\\<\\<\\=)|(?:\\[\\])|(?:\\:\\:)|(?:\\-\\>)|(?:\\+\\=)|(?:\\-\\=)|(?:\\*\\=)|(?:\\/\\=)|(?:\\%\\=)|(?:\\&\\=)"
+	"|(?:\\|\\=)|(?:\\^\\=)|(?:\\+\\+)|(?:\\-\\-)|(?:\\=\\=)|(?:\\!\\=)|(?:\\>\\=)|(?:\\<\\=)|!|(?:\\&\\&)"
+	"|(?:\\|\\|)|\\=|\\+|\\-|\\*|\\/|\\%|\\~|\\&|\\>|\\<|\\^|(?:\\.)|(?:\\,)|(?:\\:)|(?:\\;)|(?:\\[)|(?:\\])|(?:\\{)|(?:\\})|(?:\\()|(?:\\))|(?:\\:)");
+};
 
 int main()
 {
@@ -90,7 +102,8 @@ int main()
 				before = current;
 			}
 			else if((before == "." && set_of_methods_and_fields.find(current) != set_of_methods_and_fields.end())
-				||(current == "(" && set_of_standard_functions.find(before) != set_of_methods_and_fields.end()))
+				||(current == "(" && set_of_standard_functions.find(before) != set_of_methods_and_fields.end())
+				|| (current == "<" && set_of_stlcontainers.find(before) != set_of_stlcontainers.end()))
 			{
 				new_str += before + ' ' + current + ' ';
 				before = "";
