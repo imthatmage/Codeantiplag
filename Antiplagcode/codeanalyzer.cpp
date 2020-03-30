@@ -7,23 +7,28 @@ namespace Analyzer
         //to delete comments, static, std::
         const std::regex reg0 = std::regex("(?://.*?\n)|(?:/\\*(?:.|\n)*?\\*/)|(?:#.*)|(?:std.*?\\:\\:)|(?:static)");
         //to distinguish all operators with space
-        //(?:\\<\\<)|(?:\\>\\>)| - removed cos of vector<int> and int b = 3>>2
-        const std::regex reg1 = std::regex("(?:\\>\\>=)|(?:\\<\\<\\=)|(?:\\[\\])|(?:\\:\\:)|(?:\\-\\>)|(?:\\+\\=)|"
-        "(?:\\-\\=)|(?:\\*\\=)|(?:\\/\\=)|(?:\\%\\=)|(?:\\&\\=)|(?:\\|\\=)|(?:\\^\\=)|(?:\\+\\+)|(?:\\-\\-)|(?:\\=\\=)|"
-        "(?:\\!\\=)|(?:\\>\\=)|(?:\\<\\=)|!|(?:\\&\\&)|(?:\\|\\|)|\\=|\\+|\\-|\\*|\\/|\\%|\\~|\\&|\\>|\\<|\\^|(?:\\.)|"
+        /*
+        All the operators that have more than 1 character
+        (?:\\>\\>=)|(?:\\<\\<\\=)|(?:\\[\\])|(?:\\:\\:)|(?:\\-\\>)|(?:\\+\\=)|(?:\\-\\=)|(?:\\*\\=)|(?:\\/\\=)|(?:\\<\\<)|
+        (?:\\&\\=)|(?:\\|\\=)|(?:\\^\\=)|(?:\\+\\+)|(?:\\-\\-)|(?:\\=\\=)|(?:\\&\\&)|(?:\\|\\|)|(?:\\%\\=)|(?:\\>\\>)|
+        */
+        const std::regex reg1 = std::regex(""
+        ""
+        "!|\\=|\\+|\\-|\\*|\\/|\\%|\\~|\\&|\\>|\\<|\\^|(?:\\.)|"
         "(?:\\,)|(?:\\:)|(?:\\;)|(?:\\[)|(?:\\])|(?:\\{)|(?:\\})|(?:\\()|(?:\\))|(?:\\:)");
         //dict of special symbols and all 'id words' in text'
         std::map<std::string, std::string> words_id = { { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
         { "wchar_t", "wchar_t" }, { "char16_t", "char16_t" }, { "char32_t", "char32_t" }, { "short", "short" }, { "const", "const" }, { "int", "int" }, { "long", "long" },
         { "auto", "auto" }, { "string", "string" }, { "delete", "delete" }, { "new", "new" }, { "if", "if" }, { "while", "while" }, { "for", "for" }, { "do", "do" },
         { "using", "using" }, { "namespace", "namespace" }, { "break", "break" }, { "continue", "continue" }, { "return", "return" }, { "true", "true" }, 
-        { "false", "false"}, { "class", "class" }, { "struct", "struct" }, { "template", "template" } };
+        { "false", "false"}, { "class", "class" }, { "struct", "struct" }, { "template", "template" }, { "typename", "typename" }, { "extern", "extern" },
+        { "noexcept", "noexcept" } };
 
         const std::set<std::string> set_of_stlcontainers = { "set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", 
-        "priority_queue" };
+        "priority_queue", "cout", "cin", "cerr", "clog", "wcout", "wcin", "wcerr", "wclog", "pair", "tuple" };
 
         //before ()
-        const std::set<std::string> set_of_standard_functions = { "malloc", "realloc", "printf", "scanf" "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
+        const std::set<std::string> set_of_standard_functions = { "main", "make_pair", "make_tuple", "malloc", "realloc", "printf", "scanf" "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
         "for_each", "for_each_n", "count", "count_if", "mismatch", "equal", "adjacent_find", "find", "find_if", "find_if_not", "find_end", "find_first_of", 
         "search", "search_n", "lexicographical_compare", "lexicographical_compare_three_way", "copy", "copy_if", "copy_n", "copy_backward", "move", 
         "move_backward", "shift_left", "shift_right", "transform", "fill", "fill_n", "generate", "generate_n", "swap", "iter_swap", "swap_ranges", 
@@ -40,7 +45,7 @@ namespace Analyzer
         "copy", "resize", "swap", "find", "rfind", "find_first_of", "find_first_not_of", "find_last_of", "find_last_not_of", "getline", "get", "fill", "emplace",
         "emplace_back", "insert_after", "emplace_after", "erase_after", "push_front", "emplace_front", "pop_front", "resize", "merge", "splice_after", "remove", 
         "remove_if", "reverse", "unique", "sort", "splice", "emplace_hint", "extract", "count", "contains", "equal_range", "lower_bound", "upper_bound", "top"
-        "push", "pop", "front", "back", "begin", "end" };
+        "push", "pop", "front", "back", "begin", "end", "first", "second" };
     }
 
     void delete_unnecessary(std::string& str)
@@ -67,7 +72,7 @@ namespace Analyzer
 
     bool belong_to_stl(const std::string& before, const std::string& current)
     {
-        return ((before == "." && set_of_methods_and_fields.find(current) != set_of_methods_and_fields.end())
+        return (((before == "." || before == ">") && set_of_methods_and_fields.find(current) != set_of_methods_and_fields.end())
 		||(current == "(" && set_of_standard_functions.find(before) != set_of_standard_functions.end())
 		|| (current == "<" && set_of_stlcontainers.find(before) != set_of_stlcontainers.end()));
     }
