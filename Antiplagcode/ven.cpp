@@ -1,31 +1,17 @@
+#include "codeanalyzer.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstddef>
 #include <set>
-#include "codeanalyzer.hpp"
 
 static std::string m_str = "";
 
-int main()
+void bring_to_standard_view(std::string& str)
 {
-	//C:\\Users\\Hindgarden\\source\\repos\\antiplag\\Antiplagcode\\stringsfortesting.txt
-	std::cout << "Give exact path to file to check";
-	std::string tmp;
-	std::cin >> tmp;
-	std::ifstream in(tmp);
-	std::cout << in.is_open() << "open" << std::endl;
-	if (in.is_open())
-	{
-		std::string tmp;
-		while (std::getline(in, tmp))
-		{
-			m_str += (tmp + '\n');
-		}
-	}
-	Analyzer::delete_unnecessary(m_str);
-	std::cout << "String without comments and #include section:" << std::endl << m_str << std::endl; 
-	Analyzer::distinguish_operators(m_str);
-	std::cout << "String after correction of humanfactor whitespace:" << std::endl << m_str << std::endl;
+	Analyzer::delete_unnecessary(str);
+	std::cout << "String without comments and #include section:" << std::endl << str << std::endl; 
+	Analyzer::distinguish_operators(str);
+	std::cout << "String after correction of humanfactor whitespace:" << std::endl << str << std::endl;
 
 	//removing extra brackets
 	std::string before = "";
@@ -36,10 +22,9 @@ int main()
 	//replacement of names with standard
 	unsigned int id = 0;
 
-	
-	while((index = m_str.find(' ', curr_pos)) != std::string::npos)
+	while((index = str.find(' ', curr_pos)) != std::string::npos)
 	{
-		current = m_str.substr(curr_pos, index - curr_pos);
+		current = str.substr(curr_pos, index - curr_pos);
 		curr_pos = index + 1;
 		if(before == "") before = current;
 		else
@@ -64,10 +49,29 @@ int main()
 					tmper += '0';
 				}
 				tmper = "ID" + tmper + tmperid;
-				words_id[before] = tmper;
+				Analyzer::insert_to_words_id(tmper, before);
 				new_str += tmper + ' ';
 				before = current;
 			}
 		}
 	}
+}
+
+int main()
+{
+	//C:\\Users\\Hindgarden\\source\\repos\\antiplag\\Antiplagcode\\stringsfortesting.txt
+	std::cout << "Give exact path to file to check";
+	std::string tmp;
+	std::cin >> tmp;
+	std::ifstream in(tmp);
+	std::cout << in.is_open() << "open" << std::endl;
+	if (in.is_open())
+	{
+		std::string tmp;
+		while (std::getline(in, tmp))
+		{
+			m_str += (tmp + '\n');
+		}
+	}
+	bring_to_standard_view(m_str);
 }
