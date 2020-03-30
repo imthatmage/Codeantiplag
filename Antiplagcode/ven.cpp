@@ -28,11 +28,6 @@ void bring_to_standard_view(std::string& str)
 		current = str.substr(curr_pos, index - curr_pos);
 		curr_pos = index + 1;
 		if(before == "") before = current;
-		else if(before.length() == 1 && (!std::isalpha(before[0]) || before[0] == '_') || std::all_of(before.begin(), before.end(), ::isdigit))
-		{
-			new_str += before + ' ';
-			before = current;
-		}
 		else
 		{
 			auto iterator = Analyzer::words_id_find(before);
@@ -45,6 +40,11 @@ void bring_to_standard_view(std::string& str)
 			{
 				new_str += before + ' ' + current + ' ';
 				before = "";
+			}
+			else if(before.length() == 1 && (!std::isalpha(before[0]) || before[0] == '_') || std::all_of(before.begin(), before.end(), ::isdigit))
+			{
+				new_str += before + ' ';
+				before = current;
 			}
 			else
 			{
@@ -61,7 +61,7 @@ void bring_to_standard_view(std::string& str)
 			}
 		}
 	}
-	std::cout << "String after all force:" << std::endl << new_str << std::endl;
+	std::cout << "String after all forces:" << std::endl << new_str << std::endl;
 }
 
 int main()
