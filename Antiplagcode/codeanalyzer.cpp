@@ -12,9 +12,8 @@ namespace Analyzer
         (?:\\>\\>=)|(?:\\<\\<\\=)|(?:\\[\\])|(?:\\:\\:)|(?:\\-\\>)|(?:\\+\\=)|(?:\\-\\=)|(?:\\*\\=)|(?:\\/\\=)|(?:\\<\\<)|
         (?:\\&\\=)|(?:\\|\\=)|(?:\\^\\=)|(?:\\+\\+)|(?:\\-\\-)|(?:\\=\\=)|(?:\\&\\&)|(?:\\|\\|)|(?:\\%\\=)|(?:\\>\\>)|
         */
-        const std::regex reg1 = std::regex(""
-        ""
-        "!|\\=|\\+|\\-|\\*|\\/|\\%|\\~|\\&|\\>|\\<|\\^|(?:\\.)|"
+        const std::regex reg1 = std::regex(
+        "\\||!|\\=|\\+|\\-|\\*|\\/|\\%|\\~|\\&|\\>|\\<|\\^|(?:\\.)|"
         "(?:\\,)|(?:\\:)|(?:\\;)|(?:\\[)|(?:\\])|(?:\\{)|(?:\\})|(?:\\()|(?:\\))|(?:\\:)");
         //dict of special symbols and all 'id words' in text'
         std::map<std::string, std::string> words_id = { { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
@@ -25,7 +24,7 @@ namespace Analyzer
         { "noexcept", "noexcept" } };
 
         const std::set<std::string> set_of_stlcontainers = { "set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", 
-        "priority_queue", "cout", "cin", "cerr", "clog", "wcout", "wcin", "wcerr", "wclog", "pair", "tuple" };
+        "priority_queue", "cout", "cin", "cerr", "clog", "wcout", "wcin", "wcerr", "wclog", "pair", "tuple", "get" };
 
         //before ()
         const std::set<std::string> set_of_standard_functions = { "main", "make_pair", "make_tuple", "malloc", "realloc", "printf", "scanf" "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",

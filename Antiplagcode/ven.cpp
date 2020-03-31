@@ -46,6 +46,12 @@ void bring_to_standard_view(std::string& str)
 				new_str += before + ' ';
 				before = current;
 			}
+			else if((before[0] == '"' && before[before.length() - 1] == '"')
+				 || (before[0] == '\'' && before[before.length() - 1] == '\''))
+			{
+				new_str += before + ' ';
+				before = current;
+			}
 			else
 			{
 				std::string tmperid = std::to_string(id++);
