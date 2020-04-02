@@ -6,6 +6,8 @@
 #include <iterator>
 #include <utility>
 template<typename T>class CLS{};
+template<typename T>class CLS{};
+extern    int   c;
  
 static const     std::  set<std::list<int> > routs; // все найденные пути между заданной парой вершин
 const std::list<int> path; // найденный путь
@@ -14,6 +16,14 @@ std::set<std::set<int>> ribs; // рёбра
 // поиск в глубину
 void dfs(int const& nodeCur, int const& nodeLast)
 {
+	std::tuple<int, int> v;
+	std::get<0>::(v);
+	(fasfsa)->first;
+	c.second
+
+char x =   'g';
+string gor = "merinoda";
+
     path.emplace_back(nodeCur);
  
     if (nodeCur == nodeLast)
