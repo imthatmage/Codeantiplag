@@ -75,8 +75,32 @@ namespace Analyzer
 		||(current == "(" && set_of_standard_functions.find(before) != set_of_standard_functions.end())
 		|| (current == "<" && set_of_stlcontainers.find(before) != set_of_stlcontainers.end()));
     }
+
     void insert_to_words_id(const std::string& m_str, const std::string& str)
     {
         words_id[str] = m_str;
+    }
+
+    unsigned wagner_fisher(std::string from, std::string to, unsigned deleteCost,
+                           unsigned insertCost, unsigned replaceCost)
+    {
+        std::vector<std::vector<unsigned>> vec(from.length() + 1);
+        for(size_t i = 0; i < from.length() + 1; ++i)
+            vec[i].assign(to.length() + 1, 0);
+        vec[0][0] = 0;
+        for(size_t i = 1; i < to.length() + 1; ++i)
+            vec[0][i] = vec[0][i - 1] + insertCost;
+        for(size_t i = 1; i < from.length() + 1; ++i)
+        {
+            vec[i][0] = vec[i - 1][0] + deleteCost;
+            for(size_t j = 1; j < to.length() + 1; ++j)
+            {
+                if(from[i - 1] != to[j - 1])
+                    vec[i][j] = std::min({vec[i][j - 1] + insertCost, vec[i - 1][j] + deleteCost, vec[i - 1][j - 1] + replaceCost });
+                else
+                    vec[i][j] = vec[i - 1][j - 1];
+            }
+        }
+        return vec[from.length()][to.length()];
     }
 }

@@ -13,9 +13,6 @@ namespace Analyzer
     bool belong_to_stl(const std::string& before, const std::string& current);
     void insert_to_words_id(const std::string& m_str, const std::string& str);
 
-    unsigned int Wagner_Fisher_Algorithm(std::string from, std::string to, unsigned deleteCost,
-                                         unsigned insertCost, unsigned replaceCost)
-    {
-        
-    }
+    unsigned wagner_fisher(std::string from, std::string to, unsigned deleteCost,
+                           unsigned insertCost, unsigned replaceCost);
 }
