@@ -1,3 +1,6 @@
+#ifndef CODEANALYZER_HPP
+#define CODEANALYZER_HPP
+
 #include <string>
 #include <regex>
 #include <set>
@@ -16,3 +19,4 @@ namespace Analyzer
     unsigned wagner_fisher(std::string from, std::string to, unsigned deleteCost,
                            unsigned insertCost, unsigned replaceCost);
 }
+#endif
