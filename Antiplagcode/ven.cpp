@@ -5,6 +5,8 @@
 #include <set>
 #include <cctype>
 
+#include <algorithm>
+
 static std::string m_str = "";
 
 void bring_to_standard_view(std::string& str)
@@ -23,6 +25,10 @@ void bring_to_standard_view(std::string& str)
 	//replacement of names with standard
 	unsigned int id = 0;
 
+	int helptmper = std::count_if(str.begin(), str.end(), [](auto& elem) { return elem == ' '; } );
+	bool btmper = str[0] == ' ';
+	bool ctmper = str[str.length() - 1] == ' ';
+	str += ' ';
 	while((index = str.find(' ', curr_pos)) != std::string::npos)
 	{
 		current = str.substr(curr_pos, index - curr_pos);
@@ -68,11 +74,17 @@ void bring_to_standard_view(std::string& str)
 		}
 	}
 	std::cout << "String after all forces:" << std::endl << new_str << std::endl;
+	std::cout <<  helptmper << std::endl;
+	std::cout << std::count_if(new_str.begin(), new_str.end(), [](auto elem) { return elem == ' '; } ) << std::endl;
+	std::cout << (new_str[new_str.length() - 1] == ' ') << std::endl;
+	std::cout << (new_str[0] == ' ');
+	std::cout << btmper << std::endl;
+	std::cout << ctmper << std::endl;
 }
 
 int main()
 {
-	//C:\\Users\\Hindgarden\\source\\repos\\antiplag\\Antiplagcode\\stringsfortesting.txt
+	///home/almir/source/reposQt/Codeantiplag/Antiplagcode/stringsfortesting.txt
 	std::cout << "Give exact path to file to check";
 	std::string tmp;
 	std::cin >> tmp;
