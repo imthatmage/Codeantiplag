@@ -4,7 +4,6 @@
 #include <cstddef>
 #include <set>
 #include <cctype>
-
 #include <algorithm>
 
 static std::string m_str = "";
@@ -24,10 +23,11 @@ void bring_to_standard_view(std::string& str)
 	std::string new_str = "";
 	//replacement of names with standard
 	unsigned int id = 0;
-
+	//test
 	int helptmper = std::count_if(str.begin(), str.end(), [](auto& elem) { return elem == ' '; } );
 	bool btmper = str[0] == ' ';
 	bool ctmper = str[str.length() - 1] == ' ';
+	//test
 	str += ' ';
 	while((index = str.find(' ', curr_pos)) != std::string::npos)
 	{
@@ -74,12 +74,14 @@ void bring_to_standard_view(std::string& str)
 		}
 	}
 	std::cout << "String after all forces:" << std::endl << new_str << std::endl;
+	//test
 	std::cout <<  helptmper << std::endl;
 	std::cout << std::count_if(new_str.begin(), new_str.end(), [](auto elem) { return elem == ' '; } ) << std::endl;
 	std::cout << (new_str[new_str.length() - 1] == ' ') << std::endl;
 	std::cout << (new_str[0] == ' ');
 	std::cout << btmper << std::endl;
 	std::cout << ctmper << std::endl;
+	//test
 }
 
 int main()
