@@ -16,18 +16,18 @@ namespace Analyzer
         "\\||!|\\=|\\+|\\-|\\*|\\/|\\%|\\~|\\&|\\>|\\<|\\^|(?:\\.)|"
         "(?:\\,)|(?:\\:)|(?:\\;)|(?:\\[)|(?:\\])|(?:\\{)|(?:\\})|(?:\\()|(?:\\))|(?:\\:)");
         //dict of special symbols and all 'id words' in text'
-        std::map<std::string, std::string> words_id = { { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
+        std::map<std::string, std::string> words_id = { { "wcin", "wcin" }, { "cin", "cin" }, { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
         { "wchar_t", "wchar_t" }, { "char16_t", "char16_t" }, { "char32_t", "char32_t" }, { "short", "short" }, { "const", "const" }, { "int", "int" }, { "long", "long" },
         { "auto", "auto" }, { "string", "string" }, { "delete", "delete" }, { "new", "new" }, { "if", "if" }, { "while", "while" }, { "for", "for" }, { "do", "do" },
         { "using", "using" }, { "namespace", "namespace" }, { "break", "break" }, { "continue", "continue" }, { "return", "return" }, { "true", "true" }, 
         { "false", "false"}, { "class", "class" }, { "struct", "struct" }, { "template", "template" }, { "typename", "typename" }, { "extern", "extern" },
         { "noexcept", "noexcept" } };
 
-        const std::set<std::string> set_of_stlcontainers = { "set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", 
-        "priority_queue", "cout", "cin", "cerr", "clog", "wcout", "wcin", "wcerr", "wclog", "pair", "tuple", "get" };
+        const std::set<std::string> set_of_arrow = { "set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", 
+        "priority_queue", "pair", "tuple", "get", "cout", "cerr", "clog", "wcout", "wcerr" "wclog" };
 
         //before ()
-        const std::set<std::string> set_of_standard_functions = { "main", "make_pair", "make_tuple", "malloc", "realloc", "printf", "scanf" "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
+        const std::set<std::string> set_of_standard_functions = { "cin", "wcin", "main", "make_pair", "make_tuple", "malloc", "realloc", "printf", "scanf" "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
         "for_each", "for_each_n", "count", "count_if", "mismatch", "equal", "adjacent_find", "find", "find_if", "find_if_not", "find_end", "find_first_of", 
         "search", "search_n", "lexicographical_compare", "lexicographical_compare_three_way", "copy", "copy_if", "copy_n", "copy_backward", "move", 
         "move_backward", "shift_left", "shift_right", "transform", "fill", "fill_n", "generate", "generate_n", "swap", "iter_swap", "swap_ranges", 
@@ -73,7 +73,7 @@ namespace Analyzer
     {
         return (((before == "." || before == ">") && set_of_methods_and_fields.find(current) != set_of_methods_and_fields.end())
 		||(current == "(" && set_of_standard_functions.find(before) != set_of_standard_functions.end())
-		|| (current == "<" && set_of_stlcontainers.find(before) != set_of_stlcontainers.end()));
+		||(current == "<" && set_of_arrow.find(before) != set_of_arrow.end()));
     }
 
     void insert_to_words_id(const std::string& m_str, const std::string& str)
