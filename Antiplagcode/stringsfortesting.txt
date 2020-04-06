@@ -18,13 +18,15 @@ void dfs(int const& nodeCur, int const& nodeLast)
 {
 	std::tuple<int, int> v;
 	std::get<0>::(v);
-	(fasfsa)->first;
+	(nodeCur)->first;
 	c.second
 
 char x =   'g';
 string gor = "merinoda";
 
     path.emplace_back(nodeCur);
+    std : cout << "somt";
+    std ::   cin    >> 4   ;
  
     if (nodeCur == nodeLast)
     {
