@@ -6,13 +6,19 @@
 #include <vector>
 #include <list>
 
-//just renamed
+//renamed, removed white space and added some
+
+std::map<int, int>       broken;
+
+const std::set<long long> setter;
+
+
 class SETTE
 {
 public:
 	SETTE(size_t Ss)
 	{
-		sette                        =                        new std::set<long long>[Ss + 1];
+		sette                        =                        new std::set<int>[Ss + 1];
 	}
 	void            adds      (      size_t         index_, long long elem_)
 	{
@@ -80,21 +86,34 @@ public:
 			std::cout<<"-1"<<std::endl;
 		}
 	}
+	/*
+	fgragas
+	g
+	sargas
+	gzsga
+
+	gas
+	ga
+	sg
+	sadgas
+	dg8*/
 private:
-	std::set<long long>* sette = nullptr;
+	std::set<int>* sette = nullptr;
 	std::map<long long,std::set<int>>mappe;
 	size_t size_ = 0;
-	long long max_ = 0;
+	unsigned max_ = 0;
 };
 
 int main(){
-	long long                                      N_;
-	size_t M_;
-	size_t K             ;
+	int                                      N_;
+	int count, size;
+	int breaker;
+	int M_;
+int K             ;
 	std::cin>> N_       >> M_    >>K;
 	SETTE gorg_(M_);
 	std::string str_;
-	long long num_;
+	int num_;
 	int setnum_;
 	for (size_t i       = 0; i      < K; ++i)
 	{
@@ -104,22 +123,22 @@ int main(){
 			std::cin        >> num_ >> setnum_;
 			gorg_.adds(        setnum_, num_);
 		}
-		else if (str_=="DELETE")
+		if (str_=="DELETE")
 		{
 			std::cin>>num_>>setnum_;
 			gorg_.deleters(setnum_,num_);
 		}
-		else if (str_=="CLEAR")
+		if (str_=="CLEAR")
 		{
 			std::cin>>setnum_;
 			gorg_.clears(setnum_);
 		}
-		else if (str_=="LISTSET")
+		if (str_=="LISTSET")
 		{
 			std::cin>>setnum_;
 			gorg_.listsets(setnum_);
 		}
-		else if (str_=="LISTSETSOF")
+		if (str_=="LISTSETSOF")
 		{
 			std::cin>>num_;
 			gorg_.listsetofs(num_);

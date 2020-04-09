@@ -6,14 +6,12 @@
 #include <cctype>
 #include <algorithm>
 
-static std::string m_str = "";
-
 void bring_to_standard_view(std::string& str)
 {
 	Analyzer::delete_unnecessary(str);
-	std::cout << "String without comments and #include section:" << std::endl << str << std::endl; 
+	//std::cout << "String without comments and #include section:" << std::endl << str << std::endl; 
 	Analyzer::distinguish_operators(str);
-	std::cout << "String after correction of humanfactor whitespace:" << std::endl << str << "\n\n\n\n";
+	//std::cout << "String after correction of humanfactor whitespace:" << std::endl << str << "\n\n\n\n";
 
 	//removing extra brackets
 	std::string before = "";
@@ -36,10 +34,15 @@ void bring_to_standard_view(std::string& str)
 		if(before == "") before = current;
 		else
 		{
-			auto iterator = Analyzer::words_id_find(before);
-			if(iterator != Analyzer::words_id_end())
+			auto double_iterator = Analyzer::find_words_id_and_special(before);
+			if(double_iterator.first != Analyzer::words_id_end())
 			{
-				new_str += iterator->second + ' ';
+				new_str += (double_iterator.first)->second + ' ';
+				before = current;
+			}
+			else if(double_iterator.second != Analyzer::special_end())
+			{
+				new_str += (double_iterator.second)->second + ' ';
 				before = current;
 			}
 			else if(Analyzer::belong_to_stl(before, current))
@@ -73,32 +76,40 @@ void bring_to_standard_view(std::string& str)
 			}
 		}
 	}
-	std::cout << "String after all forces:" << std::endl << new_str << std::endl;
+	str = new_str;
+	Analyzer::clear();
 	//test
-	std::cout <<  helptmper << std::endl;
+	/*std::cout <<  helptmper << std::endl;
 	std::cout << std::count_if(new_str.begin(), new_str.end(), [](auto elem) { return elem == ' '; } ) << std::endl;
 	std::cout << (new_str[new_str.length() - 1] == ' ') << std::endl;
 	std::cout << (new_str[0] == ' ');
 	std::cout << btmper << std::endl;
-	std::cout << ctmper << std::endl;
+	std::cout << ctmper << std::endl;*/
 	//test
 }
 
-int main()
+void read(std::string& str, const std::string& path)
 {
-	///home/almir/source/reposQt/Codeantiplag/Antiplagcode/stringsfortesting.txt
-	std::cout << "Give exact path to file to check";
-	std::string tmp;
-	std::cin >> tmp;
-	std::ifstream in(tmp);
-	std::cout << in.is_open() << "open" << std::endl;
+	std::ifstream in(path);
 	if (in.is_open())
 	{
 		std::string tmp;
 		while (std::getline(in, tmp))
 		{
-			m_str += (tmp + '\n');
+			str += (tmp + '\n');
 		}
-	}
-	bring_to_standard_view(m_str);
+	}	
+}
+
+int main()
+{
+	std::string fstr = "", sstr = "";
+	read(fstr, "/home/almir/source/reposQt/Codeantiplag/Antiplagcode/tests/01.cpp");
+	read(sstr, "/home/almir/source/reposQt/Codeantiplag/Antiplagcode/tests/02.cpp");
+	bring_to_standard_view(sstr);
+	bring_to_standard_view(fstr);
+	std::cout << fstr << std::endl;
+	std::cout << sstr << std::endl;
+	std::cout << fstr.length() << ' ' << sstr.length() << std::endl;
+	std::cout << (fstr == sstr);
 }

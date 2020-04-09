@@ -6,7 +6,7 @@
 #include <vector>
 #include <list>
 
-//just renamed
+//renamed and added some space
 class SETTE
 {
 public:
@@ -96,11 +96,12 @@ int main()
 	long long N_;
 	size_t M_;
 	size_t K;
+	//gadsasgdadsgasgadsgs
 	std::cin >> N_ >> M_ >> K;
 	SETTE gorg_(M_);
 	std::string str_;
 	long long num_;
-	int setnum_;
+	int setnum_;//asggadsgaesgsplg;slg;asgl
 	for (size_t i = 0; i < K; ++i)
 	{
 		std::cin >> str_;
@@ -121,6 +122,16 @@ int main()
 		}
 		else if (str_ == "LISTSET")
 		{
+			/*fgksfkgjskfg
+			dfgdfshdsfhds
+			hdsfhdshdfs
+			hdsfhdsfhdshds
+			dsfhhdsfhdsfh
+			sdfhdsfhdshdsf
+			hdsghdsf
+			hds
+			h
+			hdsdfhdsfhdshsdh*/
 			std::cin >> setnum_;
 			gorg_.listsets(setnum_);
 		}

@@ -16,12 +16,14 @@ namespace Analyzer
         "\\||!|\\=|\\+|\\-|\\*|\\/|\\%|\\~|\\&|\\>|\\<|\\^|(?:\\.)|"
         "(?:\\,)|(?:\\:)|(?:\\;)|(?:\\[)|(?:\\])|(?:\\{)|(?:\\})|(?:\\()|(?:\\))|(?:\\:)");
         //dict of special symbols and all 'id words' in text'
-        std::map<std::string, std::string> words_id = { { "wcin", "wcin" }, { "cin", "cin" }, { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
+        std::map<std::string, std::string> special = { { "public", "public" }, { "protected", "protected" }, { "private", "private" }, { "size_t", "size_t" }, { "wcin", "wcin" }, { "cin", "cin" }, { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
         { "wchar_t", "wchar_t" }, { "char16_t", "char16_t" }, { "char32_t", "char32_t" }, { "short", "short" }, { "const", "const" }, { "int", "int" }, { "long", "long" },
         { "auto", "auto" }, { "string", "string" }, { "delete", "delete" }, { "new", "new" }, { "if", "if" }, { "while", "while" }, { "for", "for" }, { "do", "do" },
         { "using", "using" }, { "namespace", "namespace" }, { "break", "break" }, { "continue", "continue" }, { "return", "return" }, { "true", "true" }, 
         { "false", "false"}, { "class", "class" }, { "struct", "struct" }, { "template", "template" }, { "typename", "typename" }, { "extern", "extern" },
         { "noexcept", "noexcept" } };
+
+        std::map<std::string, std::string> words_id;
 
         const std::set<std::string> set_of_arrow = { "set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", 
         "priority_queue", "pair", "tuple", "get", "cout", "cerr", "clog", "wcout", "wcerr" "wclog" };
@@ -59,14 +61,18 @@ namespace Analyzer
 	    str = std::regex_replace(str, reg, " ");
     }
 
-    const std::map<std::string, std::string>::const_iterator words_id_find(const std::string& str)
+    std::pair<std::map<std::string, std::string>::const_iterator, std::map<std::string, std::string>::const_iterator> find_words_id_and_special(const std::string& str)
     {
-        return words_id.find(str);
+        return { words_id.end(), special.end() };
     }
 
     const std::map<std::string, std::string>::const_iterator words_id_end()
     {
         return words_id.end();
+    }
+    const std::map<std::string, std::string>::const_iterator special_end()
+    {
+        return special.end();
     }
 
     bool belong_to_stl(const std::string& before, const std::string& current)
@@ -102,5 +108,10 @@ namespace Analyzer
             }
         }
         return vec[from.length()][to.length()];
+    }
+
+    void clear()
+    {
+
     }
 }
