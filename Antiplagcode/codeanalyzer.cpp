@@ -6,12 +6,12 @@ namespace Analyzer
     {
         //to delete comments, static, std::
         const std::regex reg0 = std::regex("(?://.*?\n)|(?:/\\*(?:.|\n)*?\\*/)|(?:#.*)|(?:std.*?\\:\\:)|(?:static)");
-        //to distinguish all operators with space
         /*
         All the operators that have more than 1 character
         (?:\\>\\>=)|(?:\\<\\<\\=)|(?:\\[\\])|(?:\\:\\:)|(?:\\-\\>)|(?:\\+\\=)|(?:\\-\\=)|(?:\\*\\=)|(?:\\/\\=)|(?:\\<\\<)|
         (?:\\&\\=)|(?:\\|\\=)|(?:\\^\\=)|(?:\\+\\+)|(?:\\-\\-)|(?:\\=\\=)|(?:\\&\\&)|(?:\\|\\|)|(?:\\%\\=)|(?:\\>\\>)|
         */
+       //to distinguish almost all operators with space
         const std::regex reg1 = std::regex(
         "\\||!|\\=|\\+|\\-|\\*|\\/|\\%|\\~|\\&|\\>|\\<|\\^|(?:\\.)|"
         "(?:\\,)|(?:\\:)|(?:\\;)|(?:\\[)|(?:\\])|(?:\\{)|(?:\\})|(?:\\()|(?:\\))|(?:\\:)");
@@ -38,7 +38,6 @@ namespace Analyzer
         "is_permutation", "next_permutation", "prev_permutation", "iota", "inner_product", "adjacent_difference", "accumulate", "reduce", "transform_reduce",
         "partial_sum", "inclusive_scan", "exclusive_scan", "transform_inclusive_scan", "transform_exclusive_scan", "qsort", "bsearch", "random_shuffle",
         "remove_copy", "remove_copy_if", "replace_copy", "replace_copy_if", "reverse_copy", "rotate_copy", "unique_copy", "shuffle" };
-        
 
         //after dot(.)
         const std::set<std::string> set_of_methods_and_fields = { "assign", "at", "front", "back", "data", "c_str", "begin", "end", "empty", "size", "length",
@@ -63,7 +62,7 @@ namespace Analyzer
 
     std::pair<std::map<std::string, std::string>::const_iterator, std::map<std::string, std::string>::const_iterator> find_words_id_and_special(const std::string& str)
     {
-        return { words_id.end(), special.end() };
+        return { words_id.find(str), special.find(str) };
     }
 
     const std::map<std::string, std::string>::const_iterator words_id_end()
@@ -87,8 +86,7 @@ namespace Analyzer
         words_id[str] = m_str;
     }
 
-    unsigned wagner_fisher(std::string from, std::string to, unsigned deleteCost,
-                           unsigned insertCost, unsigned replaceCost)
+    unsigned wagner_fisher(std::string from, std::string to, unsigned deleteCost = 1, unsigned insertCost = 1, unsigned replaceCost = 1)
     {
         std::vector<std::vector<unsigned>> vec(from.length() + 1);
         for(size_t i = 0; i < from.length() + 1; ++i)
@@ -112,6 +110,6 @@ namespace Analyzer
 
     void clear()
     {
-
+        words_id.clear();
     }
 }

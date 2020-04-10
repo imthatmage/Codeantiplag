@@ -9,11 +9,9 @@
 void bring_to_standard_view(std::string& str)
 {
 	Analyzer::delete_unnecessary(str);
-	//std::cout << "String without comments and #include section:" << std::endl << str << std::endl; 
-	Analyzer::distinguish_operators(str);
-	//std::cout << "String after correction of humanfactor whitespace:" << std::endl << str << "\n\n\n\n";
 
-	//removing extra brackets
+	Analyzer::distinguish_operators(str);
+
 	std::string before = "";
 	std::string current;
 	size_t index = 0;
@@ -21,11 +19,7 @@ void bring_to_standard_view(std::string& str)
 	std::string new_str = "";
 	//replacement of names with standard
 	unsigned int id = 0;
-	//test
-	int helptmper = std::count_if(str.begin(), str.end(), [](auto& elem) { return elem == ' '; } );
-	bool btmper = str[0] == ' ';
-	bool ctmper = str[str.length() - 1] == ' ';
-	//test
+
 	str += ' ';
 	while((index = str.find(' ', curr_pos)) != std::string::npos)
 	{
@@ -78,14 +72,6 @@ void bring_to_standard_view(std::string& str)
 	}
 	str = new_str;
 	Analyzer::clear();
-	//test
-	/*std::cout <<  helptmper << std::endl;
-	std::cout << std::count_if(new_str.begin(), new_str.end(), [](auto elem) { return elem == ' '; } ) << std::endl;
-	std::cout << (new_str[new_str.length() - 1] == ' ') << std::endl;
-	std::cout << (new_str[0] == ' ');
-	std::cout << btmper << std::endl;
-	std::cout << ctmper << std::endl;*/
-	//test
 }
 
 void read(std::string& str, const std::string& path)
@@ -104,12 +90,11 @@ void read(std::string& str, const std::string& path)
 int main()
 {
 	std::string fstr = "", sstr = "";
-	read(fstr, "/home/almir/source/reposQt/Codeantiplag/Antiplagcode/tests/01.cpp");
-	read(sstr, "/home/almir/source/reposQt/Codeantiplag/Antiplagcode/tests/02.cpp");
+	read(fstr, "/home/almir/source/reposQt/Codeantiplag/Antiplagcode/tests/02.cpp");
+	read(sstr, "/home/almir/source/reposQt/Codeantiplag/Antiplagcode/tests/03.cpp");
 	bring_to_standard_view(sstr);
 	bring_to_standard_view(fstr);
 	std::cout << fstr << std::endl;
 	std::cout << sstr << std::endl;
-	std::cout << fstr.length() << ' ' << sstr.length() << std::endl;
-	std::cout << (fstr == sstr);
+	std::cout << Analyzer::wagner_fisher(fstr, sstr, 1, 1, 1);
 }

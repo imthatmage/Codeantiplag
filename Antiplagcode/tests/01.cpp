@@ -33,7 +33,7 @@ public:
 		tmp.erase(tmp.find(index));
 		setter[index].erase(setter[index].find(elem));
 	}
-	void clear(size_t index)
+	void clearon(size_t index)
 	{
 		for (const long long& tmp : setter[index])
 		{
@@ -114,7 +114,7 @@ int main()
 		else if (str == "CLEAR")
 		{
 			std::cin >> setnum;
-			gorg.clear(setnum);
+			gorg.clearon(setnum);
 		}
 		else if (str == "LISTSET")
 		{
