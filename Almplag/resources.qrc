@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/resource">
+        <file>img/14302.svg</file>
+        <file>img/66236.svg</file>
+        <file>img/189087.svg</file>
+        <file>img/scalesleft.png</file>
+        <file>img/scalesright.png</file>
+    </qresource>
+</RCC>
