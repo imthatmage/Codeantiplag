@@ -18,7 +18,11 @@ public:
 private slots:
     void on_chooseButton_clicked();
 
+    void optionsradiobutt_clicked();
+
 private:
     Ui::MainWindow *ui;
+private slots:
+
 };
 #endif // MAINWINDOW_H
