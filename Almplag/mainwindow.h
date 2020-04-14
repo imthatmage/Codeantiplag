@@ -21,6 +21,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
 private slots:
-
+    void on_chooseButton_3_clicked();
 };
 #endif // MAINWINDOW_H

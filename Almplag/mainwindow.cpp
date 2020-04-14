@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
+#include <QElapsedTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -61,4 +62,50 @@ void MainWindow::optionsradiobutt_clicked()
         ui->groupBoxSettings->hide();
         ui->listWidget->hide();
     }
+}
+
+void MainWindow::on_chooseButton_3_clicked()
+{
+    if(ui->linePath->text() == "")
+    {
+        ui->statusbar->showMessage("path is empty");
+        QElapsedTimer time;
+        time.start();
+        QPalette palette;
+        palette.setColor(QPalette::Base,Qt::red);
+        ui->linePath->setPalette(palette);
+        ui->linePath->repaint();
+        for(;time.elapsed() < 1000;)
+        {
+
+        }
+        palette.setColor(QPalette::Base,QColor(252, 233, 79));
+        ui->linePath->setPalette(palette);
+    }
+    else if((ui->linePath_2->isVisible() && ui->linePath_2->text() == ""))
+    {
+        ui->statusbar->showMessage("path is empty");
+        QElapsedTimer time;
+        time.start();
+        QPalette palette;
+        palette.setColor(QPalette::Base,Qt::red);
+        ui->linePath_2->setPalette(palette);
+        ui->linePath_2->repaint();
+        for(;time.elapsed() < 1000;)
+        {
+
+        }
+        palette.setColor(QPalette::Base,QColor(252, 233, 79));
+        ui->linePath_2->setPalette(palette);
+    }
+    else if((ui->linePath->text()).right(3) != "cpp")
+    {
+        ui->statusbar->showMessage("wrong format of file");
+
+    }
+    else if((ui->linePath_2->isVisible() && (ui->linePath_2->text()).right(3) != "cpp"))
+    {
+
+    }
+
 }
