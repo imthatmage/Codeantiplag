@@ -9,17 +9,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     connect(ui->radioButtonCheck, SIGNAL(clicked()), this, SLOT(optionsradiobutt_clicked()));
     connect(ui->radioButtonTwofiles, SIGNAL(clicked()), this, SLOT(optionsradiobutt_clicked()));
+
+    connect(ui->chooseButton, SIGNAL(clicked()), this, SLOT(choosebuttonsclicked()));
+    connect(ui->chooseButton_2, SIGNAL(clicked()), this, SLOT(choosebuttonsclicked()));
+
     ui->linePath_2->hide();
     ui->chooseButton_2->hide();
-    //ui->listWidget->hide();
+
+    //should reread database
     ui->listWidget->addItem("01");
     ui->listWidget->addItem("02");
     ui->listWidget->addItem("03");
-    QPixmap pix(":/resource/img/cat-2143332_1920.jpg");
-    int w = ui->image->width();
-    int h = ui->image->height();
-    ui->image->setPixmap(pix.scaled(w, h));
-    ui->image->hide();
+    ui->listWidget->item(0)->setSelected(true);
 }
 
 MainWindow::~MainWindow()
@@ -27,11 +28,18 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_chooseButton_clicked()
+void MainWindow::choosebuttonsclicked()
 {
     QString path = QFileDialog::getOpenFileName(0, "Choose file", "");
-    ui->linePath->setText(path);
+    QPushButton* pushbutt = (QPushButton*)sender();
+    if(pushbutt->objectName() == "chooseButton")
+    {
+        ui->linePath->setText(path);
+    }
+    else
+    {
+        ui->linePath_2->setText(path);
+    }
 }
 
 
@@ -43,14 +51,14 @@ void MainWindow::optionsradiobutt_clicked()
     {
         ui->linePath_2->hide();
         ui->chooseButton_2->hide();
+        ui->groupBoxSettings->show();
         ui->listWidget->show();
-        ui->image->hide();
     }
     else
     {
         ui->linePath_2->show();
         ui->chooseButton_2->show();
-        ui->image->show();
+        ui->groupBoxSettings->hide();
         ui->listWidget->hide();
     }
 }

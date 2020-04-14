@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[4];
-    char stringdata0[61];
+    char stringdata0[58];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,13 +33,13 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 23), // "on_chooseButton_clicked"
-QT_MOC_LITERAL(2, 35, 0), // ""
-QT_MOC_LITERAL(3, 36, 24) // "optionsradiobutt_clicked"
+QT_MOC_LITERAL(1, 11, 24), // "optionsradiobutt_clicked"
+QT_MOC_LITERAL(2, 36, 0), // ""
+QT_MOC_LITERAL(3, 37, 20) // "choosebuttonsclicked"
 
     },
-    "MainWindow\0on_chooseButton_clicked\0\0"
-    "optionsradiobutt_clicked"
+    "MainWindow\0optionsradiobutt_clicked\0"
+    "\0choosebuttonsclicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -73,8 +73,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_chooseButton_clicked(); break;
-        case 1: _t->optionsradiobutt_clicked(); break;
+        case 0: _t->optionsradiobutt_clicked(); break;
+        case 1: _t->choosebuttonsclicked(); break;
         default: ;
         }
     }

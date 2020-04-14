@@ -762,20 +762,11 @@ compiler_rcc_clean:
 qrc_resources.cpp: ../Almplag/resources.qrc \
 		../../../../Qt/5.14.2/gcc_64/bin/rcc \
 		../Almplag/img/14302.svg \
-		../Almplag/img/mixkit-i-love-you-hand-gesture-419-original.png \
-		../Almplag/img/wallpaper-4106667_640.jpg \
-		../Almplag/img/imgonline-com-ua-Resize-jkjXVFn1e9mvzHti.jpg \
 		../Almplag/img/scalesleft.png \
-		../Almplag/img/fractal-1621737_640.jpg \
-		../Almplag/img/background-2462434_640.jpg \
-		../Almplag/img/cat-2143332_1920.jpg \
-		../Almplag/img/cat-5008334_1920.jpg \
-		../Almplag/img/cat-2310384_1920.jpg \
+		../Almplag/img/gold-2889391_640.jpg \
 		../Almplag/img/66236.svg \
 		../Almplag/img/189087.svg \
-		../Almplag/img/pink-4719682_640.jpg \
-		../Almplag/img/scalesright.png \
-		../Almplag/img/spiral-2481559_640.png
+		../Almplag/img/scalesright.png
 	/home/almir/Qt/5.14.2/gcc_64/bin/rcc -name resources ../Almplag/resources.qrc -o qrc_resources.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

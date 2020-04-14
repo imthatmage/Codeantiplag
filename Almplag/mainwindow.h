@@ -16,10 +16,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_chooseButton_clicked();
-
     void optionsradiobutt_clicked();
-
+    void choosebuttonsclicked();
 private:
     Ui::MainWindow *ui;
 private slots:
