@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../Almplag -I. -I../../../../Qt/5.14.2/gcc_64/include -I../../../../Qt/5.14.2/gcc_64/include/QtWidgets -I../../../../Qt/5.14.2/gcc_64/include/QtGui -I../../../../Qt/5.14.2/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../../Qt/5.14.2/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../Almplag -I. -I../../../../Qt/5.14.2/gcc_64/include -I../../../../Qt/5.14.2/gcc_64/include/QtWidgets -I../../../../Qt/5.14.2/gcc_64/include/QtGui -I../../../../Qt/5.14.2/gcc_64/include/QtSql -I../../../../Qt/5.14.2/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../../Qt/5.14.2/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/almir/Qt/5.14.2/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = Almplag1.0.0
 DISTDIR = /home/almir/source/reposQt/Codeantiplag/build-Almplag-Desktop_Qt_5_14_2_GCC_64bit-Debug/.tmp/Almplag1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/almir/Qt/5.14.2/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/almir/Qt/5.14.2/gcc_64/lib/libQt5Widgets.so /home/almir/Qt/5.14.2/gcc_64/lib/libQt5Gui.so /home/almir/Qt/5.14.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /home/almir/Qt/5.14.2/gcc_64/lib/libQt5Widgets.so /home/almir/Qt/5.14.2/gcc_64/lib/libQt5Gui.so /home/almir/Qt/5.14.2/gcc_64/lib/libQt5Sql.so /home/almir/Qt/5.14.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -52,11 +52,11 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../Antiplagcode/codeanalyzer.cpp \
+SOURCES       = ../Almplag/analyzer.cpp \
 		../Almplag/main.cpp \
 		../Almplag/mainwindow.cpp qrc_resources.cpp \
 		moc_mainwindow.cpp
-OBJECTS       = codeanalyzer.o \
+OBJECTS       = analyzer.o \
 		main.o \
 		mainwindow.o \
 		qrc_resources.o \
@@ -272,8 +272,8 @@ DIST          = ../../../../Qt/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.14.2/gcc_64/mkspecs/features/exceptions.prf \
 		../../../../Qt/5.14.2/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Qt/5.14.2/gcc_64/mkspecs/features/lex.prf \
-		../Almplag/Almplag.pro ../Antiplagcode/codeanalyzer.hpp \
-		../Almplag/mainwindow.h ../Antiplagcode/codeanalyzer.cpp \
+		../Almplag/Almplag.pro ../Almplag/analyzer.hpp \
+		../Almplag/mainwindow.h ../Almplag/analyzer.cpp \
 		../Almplag/main.cpp \
 		../Almplag/mainwindow.cpp
 QMAKE_TARGET  = Almplag
@@ -730,8 +730,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Almplag/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.14.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Antiplagcode/codeanalyzer.hpp ../Almplag/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Antiplagcode/codeanalyzer.cpp ../Almplag/main.cpp ../Almplag/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Almplag/analyzer.hpp ../Almplag/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Almplag/analyzer.cpp ../Almplag/main.cpp ../Almplag/mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Almplag/mainwindow.ui $(DISTDIR)/
 
 
@@ -761,8 +761,10 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../Almplag/resources.qrc \
 		../../../../Qt/5.14.2/gcc_64/bin/rcc \
+		../Almplag/database/01 \
 		../Almplag/img/14302.svg \
 		../Almplag/img/scalesleft.png \
+		../Almplag/img/fractal-1621737_640.jpg \
 		../Almplag/img/gold-2889391_640.jpg \
 		../Almplag/img/66236.svg \
 		../Almplag/img/189087.svg \
@@ -888,7 +890,7 @@ moc_mainwindow.cpp: ../Almplag/mainwindow.h \
 		../../../../Qt/5.14.2/gcc_64/include/QtGui/qicon.h \
 		moc_predefs.h \
 		../../../../Qt/5.14.2/gcc_64/bin/moc
-	/home/almir/Qt/5.14.2/gcc_64/bin/moc $(DEFINES) --include /home/almir/source/reposQt/Codeantiplag/build-Almplag-Desktop_Qt_5_14_2_GCC_64bit-Debug/moc_predefs.h -I/home/almir/Qt/5.14.2/gcc_64/mkspecs/linux-g++ -I/home/almir/source/reposQt/Codeantiplag/Almplag -I/home/almir/Qt/5.14.2/gcc_64/include -I/home/almir/Qt/5.14.2/gcc_64/include/QtWidgets -I/home/almir/Qt/5.14.2/gcc_64/include/QtGui -I/home/almir/Qt/5.14.2/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Almplag/mainwindow.h -o moc_mainwindow.cpp
+	/home/almir/Qt/5.14.2/gcc_64/bin/moc $(DEFINES) --include /home/almir/source/reposQt/Codeantiplag/build-Almplag-Desktop_Qt_5_14_2_GCC_64bit-Debug/moc_predefs.h -I/home/almir/Qt/5.14.2/gcc_64/mkspecs/linux-g++ -I/home/almir/source/reposQt/Codeantiplag/Almplag -I/home/almir/Qt/5.14.2/gcc_64/include -I/home/almir/Qt/5.14.2/gcc_64/include/QtWidgets -I/home/almir/Qt/5.14.2/gcc_64/include/QtGui -I/home/almir/Qt/5.14.2/gcc_64/include/QtSql -I/home/almir/Qt/5.14.2/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Almplag/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -911,8 +913,8 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-codeanalyzer.o: ../Antiplagcode/codeanalyzer.cpp ../Antiplagcode/codeanalyzer.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o codeanalyzer.o ../Antiplagcode/codeanalyzer.cpp
+analyzer.o: ../Almplag/analyzer.cpp ../Almplag/analyzer.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o analyzer.o ../Almplag/analyzer.cpp
 
 main.o: ../Almplag/main.cpp ../Almplag/mainwindow.h \
 		../../../../Qt/5.14.2/gcc_64/include/QtWidgets/QMainWindow \
@@ -1199,7 +1201,127 @@ mainwindow.o: ../Almplag/mainwindow.cpp ../Almplag/mainwindow.h \
 		../../../../Qt/5.14.2/gcc_64/include/QtWidgets/qfiledialog.h \
 		../../../../Qt/5.14.2/gcc_64/include/QtCore/qdir.h \
 		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfileinfo.h \
-		../../../../Qt/5.14.2/gcc_64/include/QtWidgets/qdialog.h
+		../../../../Qt/5.14.2/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/QElapsedTimer \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qelapsedtimer.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/QDir \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/QtCore \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/QtCoreDepends \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qabstractanimation.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qabstractproxymodel.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qabstractstate.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qabstracttransition.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qanimationgroup.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qarraydataops.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qarraydatapointer.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qbitarray.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qbuffer.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qbytearraymatcher.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcache.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcalendar.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcborarray.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcborvalue.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qdatetime.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcborcommon.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/quuid.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcbormap.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcborstream.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfloat16.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcollator.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcommandlineoption.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcommandlineparser.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qconcatenatetablesproxymodel.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qcryptographichash.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qdeadlinetimer.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qdiriterator.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qeasingcurve.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qendian.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qeventtransition.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qexception.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfactoryinterface.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfileselector.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/QObject \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/QStringList \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfinalstate.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfuture.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfutureinterface.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qrunnable.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qresultstore.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qfuturewatcher.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qhistorystate.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qidentityproxymodel.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qisenum.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qjsonarray.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qjsonobject.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qlibrary.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qlibraryinfo.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qversionnumber.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qlinkedlist.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qlockfile.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qloggingcategory.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qmath.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qmetaobject.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qmimedata.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qmimedatabase.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qmimetype.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qpauseanimation.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qplugin.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qpointer.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qpluginloader.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qprocess.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qpropertyanimation.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qvariantanimation.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qqueue.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qrandom.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qreadwritelock.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qresource.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsavefile.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qscopeguard.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsemaphore.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsettings.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsharedmemory.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsignalmapper.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsignaltransition.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsocketnotifier.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qstack.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qstandardpaths.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qstate.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qstatemachine.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qstorageinfo.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qstringlistmodel.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qsystemsemaphore.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtemporarydir.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtemporaryfile.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtextcodec.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qthread.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qthreadpool.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qthreadstorage.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtimeline.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtimezone.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtranslator.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtransposeproxymodel.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qwaitcondition.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qwineventnotifier.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qxmlstream.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtcoreversion.h \
+		../Almplag/analyzer.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Almplag/mainwindow.cpp
 
 qrc_resources.o: qrc_resources.cpp 

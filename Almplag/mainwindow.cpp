@@ -2,6 +2,11 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QElapsedTimer>
+#include <QDir>
+#include <QtCore>
+#include <fstream>
+#include "analyzer.hpp"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,10 +22,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->linePath_2->hide();
     ui->chooseButton_2->hide();
 
-    //should reread database
-    ui->listWidget->addItem("01");
-    ui->listWidget->addItem("02");
-    ui->listWidget->addItem("03");
+    //databased read
+    QDir dir(":/resource/database");
+    dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+    dir.setSorting(QDir::Size | QDir::Reversed);   //sort
+    QFileInfoList list = dir.entryInfoList();
+    for(auto elem : list)
+    {
+        ui->listWidget->addItem(elem.fileName());
+    }
     ui->listWidget->item(0)->setSelected(true);
 }
 
@@ -63,49 +73,147 @@ void MainWindow::optionsradiobutt_clicked()
         ui->listWidget->hide();
     }
 }
+void error_back_fill(QWidget* widget)
+{
+    QElapsedTimer time;
+    time.start();
+    QPalette palette;
+    palette.setColor(QPalette::Base,Qt::Key_Green);
+    widget->setPalette(palette);
+    widget->repaint();
+    for(;time.elapsed() < 400;){}
+    palette.setColor(QPalette::Base,QColor(186, 189, 182));
+    widget->setPalette(palette);
+}
 
-void MainWindow::on_chooseButton_3_clicked()
+void bring_to_standard_view(std::string& str)
+{
+    Analyzer::delete_unnecessary(str);
+
+    Analyzer::distinguish_operators(str);
+
+    std::string before = "";
+    std::string current;
+    size_t index = 0;
+    size_t curr_pos = 1;
+    std::string new_str = "";
+    //replacement of names with standard
+    unsigned int id = 0;
+
+    str += ' ';
+    while((index = str.find(' ', curr_pos)) != std::string::npos)
+    {
+        current = str.substr(curr_pos, index - curr_pos);
+        curr_pos = index + 1;
+        if(before == "") before = current;
+        else
+        {
+            auto double_iterator = Analyzer::find_words_id_and_special(before);
+            if(double_iterator.first != Analyzer::words_id_end())
+            {
+                new_str += (double_iterator.first)->second + ' ';
+                before = current;
+            }
+            else if(double_iterator.second != Analyzer::special_end())
+            {
+                new_str += (double_iterator.second)->second + ' ';
+                before = current;
+            }
+            else if(Analyzer::belong_to_stl(before, current))
+            {
+                new_str += before + ' ' + current + ' ';
+                before = "";
+            }
+            else if((before.length() == 1 && (!std::isalpha(before[0]) || before[0] == '_')) || std::all_of(before.begin(), before.end(), ::isdigit))
+            {
+                new_str += before + ' ';
+                before = current;
+            }
+            else if((before[0] == '"' && before[before.length() - 1] == '"')
+                 || (before[0] == '\'' && before[before.length() - 1] == '\''))
+            {
+                new_str += before + ' ';
+                before = current;
+            }
+            else
+            {
+                std::string tmperid = std::to_string(id++);
+                std::string tmper = "";
+                for    (size_t i = 0; i < (6 - tmperid.length()); ++i)
+                {
+                    tmper += '0';
+                }
+                tmper = "ID" + tmper + tmperid;
+                Analyzer::insert_to_words_id(tmper, before);
+                new_str += tmper + ' ';
+                before = current;
+            }
+        }
+    }
+    str = new_str;
+    Analyzer::clear();
+}
+
+void read(std::string& str, const std::string& path)
+{
+    std::ifstream in(path);
+    if (in.is_open())
+    {
+        std::string tmp;
+        while (std::getline(in, tmp))
+        {
+            str += (tmp + '\n');
+        }
+    }
+}
+
+void start_that_shit0(MainWindow* window)
+{
+    std::string fstr = "", sstr = "";
+    qDebug() << "fasfgasfasf";
+    read(fstr, (window->ui->linePath->text()).toUtf8().constData());
+    read(sstr, (window->ui->linePath_2->text()).toUtf8().constData());
+    bring_to_standard_view(sstr);
+    bring_to_standard_view(fstr);
+    unsigned delta = Analyzer::wagner_fisher(fstr, sstr, 1, 1, 1);
+    window->ui->summaryText->setText(QString::number(delta));
+    qDebug() << delta;
+}
+
+void start_that_shit1(MainWindow* window)
+{
+
+}
+
+void MainWindow::on_startButton_clicked()
 {
     if(ui->linePath->text() == "")
     {
         ui->statusbar->showMessage("path is empty");
-        QElapsedTimer time;
-        time.start();
-        QPalette palette;
-        palette.setColor(QPalette::Base,Qt::red);
-        ui->linePath->setPalette(palette);
-        ui->linePath->repaint();
-        for(;time.elapsed() < 1000;)
-        {
-
-        }
-        palette.setColor(QPalette::Base,QColor(252, 233, 79));
-        ui->linePath->setPalette(palette);
-    }
-    else if((ui->linePath_2->isVisible() && ui->linePath_2->text() == ""))
-    {
-        ui->statusbar->showMessage("path is empty");
-        QElapsedTimer time;
-        time.start();
-        QPalette palette;
-        palette.setColor(QPalette::Base,Qt::red);
-        ui->linePath_2->setPalette(palette);
-        ui->linePath_2->repaint();
-        for(;time.elapsed() < 1000;)
-        {
-
-        }
-        palette.setColor(QPalette::Base,QColor(252, 233, 79));
-        ui->linePath_2->setPalette(palette);
+        error_back_fill(ui->linePath);
     }
     else if((ui->linePath->text()).right(3) != "cpp")
     {
         ui->statusbar->showMessage("wrong format of file");
-
+        error_back_fill(ui->linePath);
     }
-    else if((ui->linePath_2->isVisible() && (ui->linePath_2->text()).right(3) != "cpp"))
+    else if(ui->linePath_2->isVisible())
+    {
+        if(ui->linePath_2->text() == "")
+        {
+            ui->statusbar->showMessage("path is empty");
+            error_back_fill(ui->linePath_2);
+        }
+        else if((ui->linePath_2->text()).right(3) != "cpp")
+        {
+            ui->statusbar->showMessage("wrong format of file");
+            error_back_fill(ui->linePath_2);
+        }
+        else
+            start_that_shit0(this);
+    }
+    else
     {
 
     }
-
 }
