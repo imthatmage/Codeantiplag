@@ -5,8 +5,10 @@
 #include <QDir>
 #include <QtCore>
 #include <fstream>
-#include "analyzer.hpp"
 #include <QDebug>
+#include "QtSql/QSqlDatabase"
+#include "QSqlQuery"
+#include "analyzer.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -31,7 +33,6 @@ MainWindow::MainWindow(QWidget *parent)
     {
         ui->listWidget->addItem(elem.fileName());
     }
-    ui->listWidget->item(0)->setSelected(true);
 }
 
 MainWindow::~MainWindow()
@@ -170,19 +171,46 @@ void read(std::string& str, const std::string& path)
 void start_that_shit0(MainWindow* window)
 {
     std::string fstr = "", sstr = "";
-    qDebug() << "fasfgasfasf";
     read(fstr, (window->ui->linePath->text()).toUtf8().constData());
     read(sstr, (window->ui->linePath_2->text()).toUtf8().constData());
-    bring_to_standard_view(sstr);
     bring_to_standard_view(fstr);
+    bring_to_standard_view(sstr);
     unsigned delta = Analyzer::wagner_fisher(fstr, sstr, 1, 1, 1);
     window->ui->summaryText->setText(QString::number(delta));
-    qDebug() << delta;
 }
 
 void start_that_shit1(MainWindow* window)
 {
+    std::string fstr = "";
+    read(fstr, (window->ui->linePath->text()).toUtf8().constData());
+    bring_to_standard_view(fstr);
+    //Подключаем базу данных
+    QSqlDatabase db;
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("/home/almir/source/reposQt/Codeantiplag/Almplag/database/01");
+    qDebug() << db.open();
 
+    if(db.isOpen())
+    {
+        //Осуществляем запрос
+        QSqlQuery query;
+        query.exec("SELECT _id, Name, Text FROM 01");
+        //QApplication::applicationDirPath ();
+        //Выводим значения из запроса
+        while (query.next())
+        {
+            qDebug() << "fsadgag";
+            QString _id = query.value(0).toString();
+            QString name = query.value(1).toString();
+            QString check_str = query.value(2).toString();
+            qDebug() << check_str;
+            qDebug() << "fsadgag";
+        }
+    }
+    else
+    {
+        qDebug() << "Suck my dick";
+    }
 }
 
 void MainWindow::on_startButton_clicked()
@@ -214,6 +242,6 @@ void MainWindow::on_startButton_clicked()
     }
     else
     {
-
+        start_that_shit1(this);
     }
 }
