@@ -761,7 +761,6 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../Almplag/resources.qrc \
 		../../../../Qt/5.14.2/gcc_64/bin/rcc \
-		../Almplag/database/01 \
 		../Almplag/img/14302.svg \
 		../Almplag/img/scalesleft.png \
 		../Almplag/img/fractal-1621737_640.jpg \
@@ -1321,6 +1320,13 @@ mainwindow.o: ../Almplag/mainwindow.cpp ../Almplag/mainwindow.h \
 		../../../../Qt/5.14.2/gcc_64/include/QtCore/qwineventnotifier.h \
 		../../../../Qt/5.14.2/gcc_64/include/QtCore/qxmlstream.h \
 		../../../../Qt/5.14.2/gcc_64/include/QtCore/qtcoreversion.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtCore/QDebug \
+		../../../../Qt/5.14.2/gcc_64/include/QtSql/QSqlDatabase \
+		../../../../Qt/5.14.2/gcc_64/include/QtSql/qsqldatabase.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtSql/qtsqlglobal.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtSql/qtsql-config.h \
+		../../../../Qt/5.14.2/gcc_64/include/QtSql/QSqlQuery \
+		../../../../Qt/5.14.2/gcc_64/include/QtSql/qsqlquery.h \
 		../Almplag/analyzer.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Almplag/mainwindow.cpp
 

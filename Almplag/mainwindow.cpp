@@ -8,6 +8,7 @@
 #include <QDebug>
 #include "QtSql/QSqlDatabase"
 #include "QSqlQuery"
+#include <QSqlError>
 #include "analyzer.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -25,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->chooseButton_2->hide();
 
     //databased read
-    QDir dir(":/resource/database");
+    QDir dir(QApplication::applicationDirPath() + "/database");
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     dir.setSorting(QDir::Size | QDir::Reversed);   //sort
     QFileInfoList list = dir.entryInfoList();
@@ -184,28 +185,26 @@ void start_that_shit1(MainWindow* window)
     std::string fstr = "";
     read(fstr, (window->ui->linePath->text()).toUtf8().constData());
     bring_to_standard_view(fstr);
-    //Подключаем базу данных
+
+    //Connection of database
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/almir/source/reposQt/Codeantiplag/Almplag/database/01");
-    qDebug() << db.open();
+    db.setDatabaseName(QApplication::applicationDirPath() + "/database/" + window->ui->listWidget->currentItem()->text());
+    db.open();
 
+    //reading
     if(db.isOpen())
     {
-        //Осуществляем запрос
-        QSqlQuery query;
-        query.exec("SELECT _id, Name, Text FROM 01");
-        //QApplication::applicationDirPath ();
-        //Выводим значения из запроса
-        while (query.next())
-        {
-            qDebug() << "fsadgag";
-            QString _id = query.value(0).toString();
-            QString name = query.value(1).toString();
-            QString check_str = query.value(2).toString();
-            qDebug() << check_str;
-            qDebug() << "fsadgag";
-        }
+       QSqlQuery query;
+       query.exec("SELECT _id, Name, String From " + window->ui->listWidget->currentItem()->text());
+       qDebug() << query.isValid();
+       while (query.next())
+       {
+           QString _id = query.value(0).toString();
+           QString name = query.value(1).toString();
+           QString age = query.value(2).toString();
+           qDebug() << _id << name << age;
+       }
     }
     else
     {
