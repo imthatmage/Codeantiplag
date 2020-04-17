@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "analyzer.hpp"
 #include <QFileDialog>
 #include <QElapsedTimer>
 #include <QDir>
@@ -9,7 +10,8 @@
 #include "QtSql/QSqlDatabase"
 #include "QSqlQuery"
 #include <QSqlError>
-#include "analyzer.hpp"
+#include <QMessageBox>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->linePath_2->hide();
     ui->chooseButton_2->hide();
 
-    //databased read
+    //database reading
     QDir dir(QApplication::applicationDirPath() + "/database");
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     dir.setSorting(QDir::Size | QDir::Reversed);   //sort
@@ -180,23 +182,23 @@ void start_that_shit0(MainWindow* window)
     window->ui->summaryText->setText(QString::number(delta));
 }
 
-void start_that_shit1(MainWindow* window)
+void MainWindow::start_that_shit1()
 {
     std::string fstr = "";
-    read(fstr, (window->ui->linePath->text()).toUtf8().constData());
+    read(fstr, (ui->linePath->text()).toUtf8().constData());
     bring_to_standard_view(fstr);
 
-    //Connection of database
+    //Connection to database
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QApplication::applicationDirPath() + "/database/" + window->ui->listWidget->currentItem()->text());
+    db.setDatabaseName(QApplication::applicationDirPath() + "/database/" + ui->listWidget->currentItem()->text());
     db.open();
 
     //reading
     if(db.isOpen())
     {
        QSqlQuery query;
-       query.exec("SELECT _id, Name, String From " + window->ui->listWidget->currentItem()->text());
+       query.exec("SELECT _id, Name, String From " + ui->listWidget->currentItem()->text());
        qDebug() << query.isValid();
        while (query.next())
        {
@@ -208,7 +210,7 @@ void start_that_shit1(MainWindow* window)
     }
     else
     {
-        qDebug() << "Suck my dick";
+        QMessageBox::warning(this, "Warning", "fadfas");
     }
 }
 
@@ -236,9 +238,11 @@ void MainWindow::on_startButton_clicked()
             ui->statusbar->showMessage("wrong format of file");
             error_back_fill(ui->linePath_2);
         }
+        //Two Files compare
         else
             start_that_shit0(this);
     }
+    //Standard check
     else
     {
         start_that_shit1(this);

@@ -21,7 +21,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     friend void start_that_shit0(MainWindow* window);
-    friend void start_that_shit1(MainWindow* window);
+    void start_that_shit1();
 };
 
 #endif // MAINWINDOW_H
