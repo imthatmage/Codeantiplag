@@ -161,7 +161,7 @@ public:
         groupBox_4->setPalette(palette);
         summaryText = new QLabel(groupBox_4);
         summaryText->setObjectName(QString::fromUtf8("summaryText"));
-        summaryText->setGeometry(QRect(20, 30, 461, 31));
+        summaryText->setGeometry(QRect(10, 20, 471, 31));
         groupBoxFile = new QGroupBox(centralwidget);
         groupBoxFile->setObjectName(QString::fromUtf8("groupBoxFile"));
         groupBoxFile->setGeometry(QRect(9, 9, 494, 104));

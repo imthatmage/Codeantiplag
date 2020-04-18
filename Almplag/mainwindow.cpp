@@ -232,11 +232,6 @@ void MainWindow::on_startButton_clicked()
         ui->statusbar->showMessage("candidate name is required");
         error_back_fill(ui->lineName);
     }
-    else if(!ui->listWidget->currentItem())
-    {
-        ui->statusbar->showMessage("contest is not choosen");
-        error_back_fill(ui->listWidget);
-    }
     else if(ui->linePath->text() == "")
     {
         ui->statusbar->showMessage("path is empty");
@@ -266,6 +261,11 @@ void MainWindow::on_startButton_clicked()
     //Standard check
     else
     {
+        if(!ui->listWidget->currentItem())
+        {
+            ui->statusbar->showMessage("contest is not choosen");
+            error_back_fill(ui->listWidget);
+        }
         start_that_shit1();
     }
 }
