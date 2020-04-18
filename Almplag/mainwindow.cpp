@@ -158,9 +158,9 @@ void bring_to_standard_view(std::string& str)
     Analyzer::clear();
 }
 
-void read(std::string& str, const std::string& path)
+void MainWindow::read(std::string& str, const QString& path)
 {
-    std::ifstream in(path);
+    std::ifstream in(path.toUtf8().constData());
     if (in.is_open())
     {
         std::string tmp;
@@ -169,17 +169,20 @@ void read(std::string& str, const std::string& path)
             str += (tmp + '\n');
         }
     }
+    else
+        QMessageBox::warning(this, "Warning", "Can not open " + path);
 }
 
-void start_that_shit0(MainWindow* window)
+void MainWindow::start_that_shit0(MainWindow* window)
 {
     std::string fstr = "", sstr = "";
-    read(fstr, (window->ui->linePath->text()).toUtf8().constData());
-    read(sstr, (window->ui->linePath_2->text()).toUtf8().constData());
+    read(fstr, (window->ui->linePath->text()));
+    read(sstr, (window->ui->linePath_2->text()));
     bring_to_standard_view(fstr);
     bring_to_standard_view(sstr);
-    unsigned delta = Analyzer::wagner_fisher(fstr, sstr, 1, 1, 1);
-    window->ui->summaryText->setText(QString::number(delta));
+    unsigned delta = Analyzer::wagner_fisher(fstr, sstr);
+    QString percent = QString::number((1.0 - ((double)delta / sstr.length())) * 100);
+    ui->summaryText->setText(percent + "% similar");
 }
 
 void MainWindow::start_that_shit1()
@@ -194,13 +197,13 @@ void MainWindow::start_that_shit1()
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(QApplication::applicationDirPath() + "/database/" + ui->listWidget->currentItem()->text());
-    db.open();
+
 
     //reading
-    if(db.isOpen())
+    if(db.open())
     {
        QSqlQuery query;
-       unsigned min_actions = 100000;
+       unsigned min_actions = 10000, length_sus_str = 1;
        QString suspect;
        query.exec("SELECT _id, Name, String From " + ui->listWidget->currentItem()->text());
        qDebug() << query.isValid();
@@ -212,9 +215,14 @@ void MainWindow::start_that_shit1()
            {
                min_actions = actions;
                suspect = query.value(1).toString();
+               length_sus_str = check_str.length() > fstr.length() ? check_str.length() : fstr.length();
            }
        }
-
+       //summary
+       QString percent = QString::number(((1.0 - ((double)min_actions / length_sus_str)) * 100));
+       ui->summaryText->setText("Most likely, this code was borrowed from " + suspect + '(' + percent + "%)");
+       ui->additionalAnnotation->setText("Percent made via Wagner–Fischer algorithm. Below 70 it is not entirely accurate");
+       //
 
        db.close();
     }
@@ -266,6 +274,7 @@ void MainWindow::on_startButton_clicked()
             ui->statusbar->showMessage("contest is not choosen");
             error_back_fill(ui->listWidget);
         }
-        start_that_shit1();
+        else
+            start_that_shit1();
     }
 }

@@ -32,6 +32,7 @@ public:
     QWidget *centralwidget;
     QGroupBox *groupBox_4;
     QLabel *summaryText;
+    QLabel *additionalAnnotation;
     QGroupBox *groupBoxFile;
     QLineEdit *linePath;
     QPushButton *chooseButton;
@@ -54,9 +55,9 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(512, 400);
+        MainWindow->resize(512, 420);
         MainWindow->setMinimumSize(QSize(512, 400));
-        MainWindow->setMaximumSize(QSize(512, 400));
+        MainWindow->setMaximumSize(QSize(512, 420));
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/resource/img/189087.svg"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -64,7 +65,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         groupBox_4 = new QGroupBox(centralwidget);
         groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
-        groupBox_4->setGeometry(QRect(9, 288, 494, 61));
+        groupBox_4->setGeometry(QRect(9, 288, 494, 81));
         QPalette palette;
         QBrush brush(QColor(238, 238, 236, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -162,6 +163,9 @@ public:
         summaryText = new QLabel(groupBox_4);
         summaryText->setObjectName(QString::fromUtf8("summaryText"));
         summaryText->setGeometry(QRect(10, 20, 471, 31));
+        additionalAnnotation = new QLabel(groupBox_4);
+        additionalAnnotation->setObjectName(QString::fromUtf8("additionalAnnotation"));
+        additionalAnnotation->setGeometry(QRect(7, 56, 471, 20));
         groupBoxFile = new QGroupBox(centralwidget);
         groupBoxFile->setObjectName(QString::fromUtf8("groupBoxFile"));
         groupBoxFile->setGeometry(QRect(9, 9, 494, 104));
@@ -925,12 +929,15 @@ public:
         brush18.setStyle(Qt::SolidPattern);
         palette13.setBrush(QPalette::Active, QPalette::Button, brush18);
         palette13.setBrush(QPalette::Active, QPalette::Base, brush8);
+        palette13.setBrush(QPalette::Active, QPalette::Highlight, brush10);
         palette13.setBrush(QPalette::Inactive, QPalette::Button, brush18);
         palette13.setBrush(QPalette::Inactive, QPalette::Base, brush8);
+        palette13.setBrush(QPalette::Inactive, QPalette::Highlight, brush10);
         palette13.setBrush(QPalette::Disabled, QPalette::Button, brush18);
         QBrush brush19(QColor(239, 239, 239, 255));
         brush19.setStyle(Qt::SolidPattern);
         palette13.setBrush(QPalette::Disabled, QPalette::Base, brush19);
+        palette13.setBrush(QPalette::Disabled, QPalette::Highlight, brush15);
         lineName->setPalette(palette13);
         MainWindow->setCentralWidget(centralwidget);
         label->raise();
@@ -1027,6 +1034,7 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Check", nullptr));
         groupBox_4->setTitle(QCoreApplication::translate("MainWindow", "Summary", nullptr));
         summaryText->setText(QString());
+        additionalAnnotation->setText(QString());
         groupBoxFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         chooseButton->setText(QCoreApplication::translate("MainWindow", "Choose", nullptr));
         chooseButton_2->setText(QCoreApplication::translate("MainWindow", "Choose", nullptr));
