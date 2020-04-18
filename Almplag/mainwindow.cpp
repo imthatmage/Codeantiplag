@@ -184,9 +184,11 @@ void start_that_shit0(MainWindow* window)
 
 void MainWindow::start_that_shit1()
 {
+    //all work with our candidate
     std::string fstr = "";
     read(fstr, (ui->linePath->text()).toUtf8().constData());
     bring_to_standard_view(fstr);
+    //HERE
 
     //Connection to database
     QSqlDatabase db;
@@ -198,25 +200,44 @@ void MainWindow::start_that_shit1()
     if(db.isOpen())
     {
        QSqlQuery query;
+       unsigned min_actions = 100000;
+       QString suspect;
        query.exec("SELECT _id, Name, String From " + ui->listWidget->currentItem()->text());
        qDebug() << query.isValid();
        while (query.next())
        {
-           QString _id = query.value(0).toString();
-           QString name = query.value(1).toString();
-           QString age = query.value(2).toString();
-           qDebug() << _id << name << age;
+           std::string check_str = (query.value(2).toString()).toUtf8().constData();
+           unsigned actions = Analyzer::wagner_fisher(fstr, check_str);
+           if(actions < min_actions)
+           {
+               min_actions = actions;
+               suspect = query.value(1).toString();
+           }
        }
+
+
+       db.close();
     }
     else
     {
-        QMessageBox::warning(this, "Warning", "fadfas");
+        QMessageBox::warning(this, "Warning", ui->listWidget->currentItem()->text() + " is damaged");
     }
 }
 
 void MainWindow::on_startButton_clicked()
 {
-    if(ui->linePath->text() == "")
+    //wrong order of check(not srs)
+    if(ui->lineName->text().isEmpty())
+    {
+        ui->statusbar->showMessage("candidate name is required");
+        error_back_fill(ui->lineName);
+    }
+    else if(!ui->listWidget->currentItem())
+    {
+        ui->statusbar->showMessage("contest is not choosen");
+        error_back_fill(ui->listWidget);
+    }
+    else if(ui->linePath->text() == "")
     {
         ui->statusbar->showMessage("path is empty");
         error_back_fill(ui->linePath);
@@ -245,6 +266,6 @@ void MainWindow::on_startButton_clicked()
     //Standard check
     else
     {
-        start_that_shit1(this);
+        start_that_shit1();
     }
 }

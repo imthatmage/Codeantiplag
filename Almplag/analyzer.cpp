@@ -86,7 +86,7 @@ namespace Analyzer
         words_id[str] = m_str;
     }
 
-    unsigned wagner_fisher(std::string from, std::string to, unsigned deleteCost = 1, unsigned insertCost = 1, unsigned replaceCost = 1)
+    unsigned wagner_fisher(std::string from, std::string to, unsigned deleteCost, unsigned insertCost, unsigned replaceCost)
     {
         std::vector<std::vector<unsigned>> vec(from.length() + 1);
         for(size_t i = 0; i < from.length() + 1; ++i)
