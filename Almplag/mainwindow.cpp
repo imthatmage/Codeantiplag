@@ -158,7 +158,7 @@ void bring_to_standard_view(std::string& str)
     Analyzer::clear();
 }
 
-void MainWindow::read(std::string& str, const QString& path)
+bool read(std::string& str, const QString& path)
 {
     std::ifstream in(path.toUtf8().constData());
     if (in.is_open())
@@ -168,67 +168,105 @@ void MainWindow::read(std::string& str, const QString& path)
         {
             str += (tmp + '\n');
         }
+        return true;
     }
     else
-        QMessageBox::warning(this, "Warning", "Can not open " + path);
+        return false;
+        //QMessageBox::warning(this, "Warning", "Can not open " + path);
 }
 
-void MainWindow::start_that_shit0(MainWindow* window)
+void MainWindow::start_that_shit0()
 {
     std::string fstr = "", sstr = "";
-    read(fstr, (window->ui->linePath->text()));
-    read(sstr, (window->ui->linePath_2->text()));
-    bring_to_standard_view(fstr);
-    bring_to_standard_view(sstr);
-    unsigned delta = Analyzer::wagner_fisher(fstr, sstr);
-    QString percent = QString::number((1.0 - ((double)delta / sstr.length())) * 100);
-    ui->summaryText->setText(percent + "% similar");
+    if(!read(fstr, (ui->linePath->text())))
+    {
+        QMessageBox::warning(this, "Warning", "Can not open " + (ui->linePath->text()));
+    }
+    else if(fstr.length() > 8000)
+    {
+        QMessageBox::warning(this, "Warning", "There is no reason to check so big file ");
+        error_back_fill(ui->linePath);
+    }
+    else if(!read(sstr, (ui->linePath_2->text())))
+    {
+        QMessageBox::warning(this, "Warning", "Can not open " + (ui->linePath_2->text()));
+    }
+    else if(sstr.length() > 8000)
+    {
+        QMessageBox::warning(this, "Warning", "There is no reason to check so big file ");
+        error_back_fill(ui->linePath_2);
+    }
+    else
+    {
+        bring_to_standard_view(fstr);
+        bring_to_standard_view(sstr);
+        unsigned delta = Analyzer::wagner_fisher(fstr, sstr);
+        QString percent = QString::number((1.0 - ((double)delta / (sstr.length() > fstr.length() ? sstr.length() : fstr.length()))) * 100);
+        //summary
+        ui->summaryText->setText(percent + "% similar");
+        ui->additionalAnnotation->setText("Percent made via Wagner–Fischer algorithm. Below 70 it is not entirely accurate");
+        //
+    }
 }
 
 void MainWindow::start_that_shit1()
 {
     //all work with our candidate
     std::string fstr = "";
-    read(fstr, (ui->linePath->text()).toUtf8().constData());
-    bring_to_standard_view(fstr);
-    //HERE
-
-    //Connection to database
-    QSqlDatabase db;
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QApplication::applicationDirPath() + "/database/" + ui->listWidget->currentItem()->text());
-
-
-    //reading
-    if(db.open())
+    if(!read(fstr, (ui->linePath->text()).toUtf8().constData()))
     {
-       QSqlQuery query;
-       unsigned min_actions = 10000, length_sus_str = 1;
-       QString suspect;
-       query.exec("SELECT _id, Name, String From " + ui->listWidget->currentItem()->text());
-       qDebug() << query.isValid();
-       while (query.next())
-       {
-           std::string check_str = (query.value(2).toString()).toUtf8().constData();
-           unsigned actions = Analyzer::wagner_fisher(fstr, check_str);
-           if(actions < min_actions)
-           {
-               min_actions = actions;
-               suspect = query.value(1).toString();
-               length_sus_str = check_str.length() > fstr.length() ? check_str.length() : fstr.length();
-           }
-       }
-       //summary
-       QString percent = QString::number(((1.0 - ((double)min_actions / length_sus_str)) * 100));
-       ui->summaryText->setText("Most likely, this code was borrowed from " + suspect + '(' + percent + "%)");
-       ui->additionalAnnotation->setText("Percent made via Wagner–Fischer algorithm. Below 70 it is not entirely accurate");
-       //
-
-       db.close();
+        QMessageBox::warning(this, "Warning", "Can not open " + (ui->linePath->text()));
+    }
+    else if(fstr.length() > 8000)
+    {
+        QMessageBox::warning(this, "Warning", "There is no reason to check so big file ");
+        error_back_fill(ui->linePath);
     }
     else
     {
-        QMessageBox::warning(this, "Warning", ui->listWidget->currentItem()->text() + " is damaged");
+        bring_to_standard_view(fstr);
+        //HERE
+
+        //Connection to database
+        QSqlDatabase db;
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(QApplication::applicationDirPath() + "/database/" + ui->listWidget->currentItem()->text());
+
+
+        //reading
+        if(db.open())
+        {
+           QSqlQuery query;
+           unsigned min_actions = 10000, length_sus_str = 1;
+           QString suspect;
+           query.exec("SELECT _id, Name, String From " + ui->listWidget->currentItem()->text());
+           qDebug() << query.isValid();
+           while (query.next())
+           {
+               std::string check_str = (query.value(2).toString()).toUtf8().constData();
+               unsigned actions = Analyzer::wagner_fisher(fstr, check_str);
+               if(actions < min_actions)
+               {
+                   min_actions = actions;
+                   suspect = query.value(1).toString();
+                   length_sus_str = check_str.length() > fstr.length() ? check_str.length() : fstr.length();
+               }
+           }
+           //summary
+           QString percent = QString::number(((1.0 - ((double)min_actions / length_sus_str)) * 100));
+           ui->summaryText->setText("Most likely, this code was borrowed from " + suspect + '(' + percent + "%)");
+           ui->additionalAnnotation->setText("Percent made via Wagner–Fischer algorithm. Below 70 it is not entirely accurate");
+           //
+           query.prepare("INSERT INTO " + ui->listWidget->currentItem()->text() + "(Name, String) values(:Name,:String)");
+           query.bindValue(":Name", ui->lineName->text());
+           query.bindValue(":String", QString::fromStdString(fstr));
+           qDebug() << query.exec();
+           db.close();
+        }
+        else
+        {
+            QMessageBox::warning(this, "Warning", ui->listWidget->currentItem()->text() + " is damaged");
+        }
     }
 }
 
@@ -264,7 +302,7 @@ void MainWindow::on_startButton_clicked()
         }
         //Two Files compare
         else
-            start_that_shit0(this);
+            start_that_shit0();
     }
     //Standard check
     else

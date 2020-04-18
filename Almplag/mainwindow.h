@@ -20,9 +20,8 @@ private slots:
     void on_startButton_clicked();
 private:
     Ui::MainWindow *ui;
-    friend void start_that_shit0(MainWindow* window);
+    void start_that_shit0();
     void start_that_shit1();
-    void read(std::string& str, const QString& path);
     void start_that_shit0(MainWindow* window);
 };
 
