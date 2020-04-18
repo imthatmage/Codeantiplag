@@ -28,7 +28,7 @@ namespace Analyzer
         const std::set<std::string> set_of_arrow = { "set", "queue", "deque", "vector", "list", "forward_list", "map", "stack", "array", "multiset", "multimap", 
         "priority_queue", "pair", "tuple", "get", "cout", "cerr", "clog", "wcout", "wcerr" "wclog" };
 
-        //before ()
+        //before '()'
         const std::set<std::string> set_of_standard_functions = { "cin", "wcin", "main", "make_pair", "make_tuple", "malloc", "realloc", "printf", "scanf" "calloc", "sizeof", "sort", "reverse", "all_of", "any_of", "none_of",
         "for_each", "for_each_n", "count", "count_if", "mismatch", "equal", "adjacent_find", "find", "find_if", "find_if_not", "find_end", "find_first_of", 
         "search", "search_n", "lexicographical_compare", "lexicographical_compare_three_way", "copy", "copy_if", "copy_n", "copy_backward", "move", 

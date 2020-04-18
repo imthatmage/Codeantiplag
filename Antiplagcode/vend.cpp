@@ -84,17 +84,12 @@ void read(std::string& str, const std::string& path)
 		{
 			str += (tmp + '\n');
 		}
-	}
-	else
-	{
-		std::cerr << "Sucker";
-	}
-	
+	}	
 }
 
 int main()
 {
-	/*std::string fstr = "", sstr = "";
+	std::string fstr = "", sstr = "";
 	read(fstr, "/home/almir/source/reposQt/Codeantiplag/Antiplagcode/tests/02.cpp");
 	read(sstr, "/home/almir/source/reposQt/Codeantiplag/Antiplagcode/vend.cpp)");
 	bring_to_standard_view(sstr);
@@ -102,8 +97,5 @@ int main()
 	std::cout << fstr << std::endl;
 	std::cout << sstr << std::endl;
 	std::cout << Analyzer::wagner_fisher(fstr, sstr, 1, 1, 1) << std::endl;
-	std::cout << fstr.length() << ' ' << sstr.length() << std::endl;*/
-	std::string first = "venSuNvercoLIGhtS";
-	std::string second = "SuNLIGhTOR";
-	std::cout << Analyzer::wagner_fisher(first, second, 1, 1, 1);
+	std::cout << fstr.length() << ' ' << sstr.length() << std::endl;
 }

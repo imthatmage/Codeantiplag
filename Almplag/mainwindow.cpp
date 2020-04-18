@@ -172,7 +172,6 @@ bool read(std::string& str, const QString& path)
     }
     else
         return false;
-        //QMessageBox::warning(this, "Warning", "Can not open " + path);
 }
 
 void MainWindow::start_that_shit0()
