@@ -27,6 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->linePath_2->hide();
     ui->chooseButton_2->hide();
 
+    ui->lineName2->hide();
+    ui->labelName2->hide();
+
     //database reading
     QDir dir(QApplication::applicationDirPath() + "/database");
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
@@ -68,6 +71,9 @@ void MainWindow::optionsradiobutt_clicked()
         ui->chooseButton_2->hide();
         ui->groupBoxSettings->show();
         ui->listWidget->show();
+
+        ui->lineName2->hide();
+        ui->labelName2->hide();
     }
     else
     {
@@ -75,6 +81,9 @@ void MainWindow::optionsradiobutt_clicked()
         ui->chooseButton_2->show();
         ui->groupBoxSettings->hide();
         ui->listWidget->hide();
+
+        ui->lineName2->show();
+        ui->labelName2->show();
     }
 }
 void error_back_fill(QWidget* widget)
@@ -201,10 +210,31 @@ void MainWindow::start_that_shit0()
         bring_to_standard_view(sstr);
         unsigned delta = Analyzer::wagner_fisher(fstr, sstr);
         QString percent = QString::number((1.0 - ((double)delta / (sstr.length() > fstr.length() ? sstr.length() : fstr.length()))) * 100);
+
         //summary
         ui->summaryText->setText(percent + "% similar");
         ui->additionalAnnotation->setText("Percent made via Wagner–Fischer algorithm. Below 70 it is not entirely accurate");
         //
+
+        QSqlDatabase db;
+        if(!db.open())
+        {
+            QMessageBox::warning(this, "Warning", "Can not open " + ui->listWidget->currentItem()->text());
+        }
+        else
+        {
+            QSqlQuery query;
+            db = QSqlDatabase::addDatabase("QSQLITE");
+            db.setDatabaseName(QApplication::applicationDirPath() + "/database/" + ui->listWidget->currentItem()->text());
+            query.prepare("INSERT INTO " + ui->listWidget->currentItem()->text() + "(Name, String) values(:Name,:String)");
+            query.bindValue(":Name", ui->lineName->text());
+            query.bindValue(":String", QString::fromStdString(fstr));
+            query.exec();
+            query.prepare("INSERT INTO " + ui->listWidget->currentItem()->text() + "(Name, String) values(:Name,:String)");
+            query.bindValue(":Name", ui->lineName->text());
+            query.bindValue(":String", QString::fromStdString(sstr));
+            query.exec();
+        }
     }
 }
 
@@ -239,7 +269,6 @@ void MainWindow::start_that_shit1()
            unsigned min_actions = 10000, length_sus_str = 1;
            QString suspect;
            query.exec("SELECT _id, Name, String From " + ui->listWidget->currentItem()->text());
-           qDebug() << query.isValid();
            while (query.next())
            {
                std::string check_str = (query.value(2).toString()).toUtf8().constData();
@@ -259,7 +288,7 @@ void MainWindow::start_that_shit1()
            query.prepare("INSERT INTO " + ui->listWidget->currentItem()->text() + "(Name, String) values(:Name,:String)");
            query.bindValue(":Name", ui->lineName->text());
            query.bindValue(":String", QString::fromStdString(fstr));
-           qDebug() << query.exec();
+           query.exec();
            db.close();
         }
         else
@@ -289,7 +318,12 @@ void MainWindow::on_startButton_clicked()
     }
     else if(ui->linePath_2->isVisible())
     {
-        if(ui->linePath_2->text() == "")
+        if(ui->lineName2->text().isEmpty())
+        {
+            ui->statusbar->showMessage("candidate name is required");
+            error_back_fill(ui->lineName2);
+        }
+        else if(ui->linePath_2->text() == "")
         {
             ui->statusbar->showMessage("path is empty");
             error_back_fill(ui->linePath_2);
