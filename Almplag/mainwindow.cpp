@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //database reading
     QDir dir(QApplication::applicationDirPath() + "/database");
+    qDebug() << QApplication::applicationDirPath();
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     dir.setSorting(QDir::Size | QDir::Reversed);   //sort
     QFileInfoList list = dir.entryInfoList();

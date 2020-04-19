@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>512</width>
-    <height>420</height>
+    <height>445</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>512</width>
-    <height>400</height>
+    <height>445</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>512</width>
-    <height>420</height>
+    <height>445</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -34,9 +34,9 @@
     <property name="geometry">
      <rect>
       <x>9</x>
-      <y>288</y>
+      <y>298</y>
       <width>494</width>
-      <height>81</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="palette">
@@ -45,17 +45,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -209,17 +209,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -382,8 +382,8 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -535,6 +535,14 @@
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI Semibold</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="title">
      <string>Summary</string>
     </property>
@@ -546,6 +554,105 @@
        <width>471</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string/>
@@ -559,6 +666,105 @@
        <width>471</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string/>
@@ -580,17 +786,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -744,17 +950,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -917,8 +1123,8 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1070,6 +1276,14 @@
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI Semibold</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="title">
      <string>File</string>
     </property>
@@ -1088,17 +1302,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -1252,17 +1466,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -1425,8 +1639,8 @@
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -1577,6 +1791,14 @@
         </colorrole>
        </disabled>
       </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="readOnly">
       <bool>true</bool>
@@ -1597,17 +1819,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -1761,17 +1983,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -1934,8 +2156,8 @@
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -2086,6 +2308,14 @@
         </colorrole>
        </disabled>
       </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>Choose</string>
@@ -2106,17 +2336,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -2270,17 +2500,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -2443,8 +2673,8 @@
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -2595,6 +2825,14 @@
         </colorrole>
        </disabled>
       </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="readOnly">
       <bool>true</bool>
@@ -2615,17 +2853,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -2779,17 +3017,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -2952,8 +3190,8 @@
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -3104,6 +3342,14 @@
         </colorrole>
        </disabled>
       </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>Choose</string>
@@ -3125,17 +3371,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -3289,17 +3535,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -3462,8 +3708,8 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -3615,6 +3861,14 @@
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI Semibold</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="title">
      <string>Options</string>
     </property>
@@ -3627,17 +3881,17 @@
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>238</red>
-             <green>238</green>
-             <blue>236</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>52</red>
-             <green>255</green>
+             <red>0</red>
+             <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
@@ -3791,17 +4045,17 @@
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>238</red>
-             <green>238</green>
-             <blue>236</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>52</red>
-             <green>255</green>
+             <red>0</red>
+             <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
@@ -3964,8 +4218,8 @@
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>52</red>
-             <green>255</green>
+             <red>0</red>
+             <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
@@ -4116,6 +4370,14 @@
           </colorrole>
          </disabled>
         </palette>
+       </property>
+       <property name="font">
+        <font>
+         <family>Yu Gothic UI Semibold</family>
+         <pointsize>9</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="text">
         <string>Standard check</string>
@@ -4133,17 +4395,17 @@
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>238</red>
-             <green>238</green>
-             <blue>236</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>52</red>
-             <green>255</green>
+             <red>0</red>
+             <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
@@ -4297,17 +4559,17 @@
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>238</red>
-             <green>238</green>
-             <blue>236</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>52</red>
-             <green>255</green>
+             <red>0</red>
+             <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
@@ -4470,8 +4732,8 @@
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>52</red>
-             <green>255</green>
+             <red>0</red>
+             <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
@@ -4622,6 +4884,14 @@
           </colorrole>
          </disabled>
         </palette>
+       </property>
+       <property name="font">
+        <font>
+         <family>Yu Gothic UI Semibold</family>
+         <pointsize>9</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="text">
         <string>Compare two files</string>
@@ -4645,17 +4915,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -4809,17 +5079,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -4982,8 +5252,8 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -5135,6 +5405,14 @@
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI Semibold</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="title">
      <string>Settings</string>
     </property>
@@ -5143,9 +5421,108 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>221</width>
+       <width>211</width>
        <height>81</height>
       </rect>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
     </widget>
    </widget>
@@ -5164,17 +5541,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -5328,17 +5705,17 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>238</red>
-          <green>238</green>
-          <blue>236</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -5501,8 +5878,8 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>52</red>
-          <green>255</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -5653,6 +6030,14 @@
        </colorrole>
       </disabled>
      </palette>
+    </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI Semibold</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -5664,15 +6049,42 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>9</x>
-      <y>220</y>
+      <x>10</x>
+      <y>230</y>
       <width>491</width>
-      <height>80</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="palette">
      <palette>
       <active>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="ButtonText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
        <colorrole role="Highlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -5684,6 +6096,33 @@
        </colorrole>
       </active>
       <inactive>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="ButtonText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
        <colorrole role="Highlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -5695,6 +6134,33 @@
        </colorrole>
       </inactive>
       <disabled>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>26</red>
+          <green>127</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="ButtonText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>26</red>
+          <green>127</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
        <colorrole role="Highlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -5707,27 +6173,53 @@
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI Semibold</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="title">
      <string/>
     </property>
     <widget class="QLineEdit" name="lineName">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>62</x>
        <y>10</y>
-       <width>113</width>
+       <width>101</width>
        <height>24</height>
       </rect>
      </property>
      <property name="palette">
       <palette>
        <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>136</red>
-           <green>138</green>
-           <blue>133</blue>
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
@@ -5751,12 +6243,30 @@
         </colorrole>
        </active>
        <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>136</red>
-           <green>138</green>
-           <blue>133</blue>
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
@@ -5780,12 +6290,30 @@
         </colorrole>
        </inactive>
        <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>136</red>
-           <green>138</green>
-           <blue>133</blue>
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
@@ -5810,11 +6338,19 @@
        </disabled>
       </palette>
      </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
     </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>10</y>
        <width>41</width>
        <height>16</height>
@@ -5832,6 +6368,15 @@
           </color>
          </brush>
         </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
         <colorrole role="Text">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
@@ -5844,9 +6389,9 @@
         <colorrole role="ButtonText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
@@ -5870,6 +6415,15 @@
           </color>
          </brush>
         </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
         <colorrole role="Text">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
@@ -5882,9 +6436,9 @@
         <colorrole role="ButtonText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
@@ -5902,9 +6456,18 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>190</red>
-           <green>190</green>
-           <blue>190</blue>
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
@@ -5920,9 +6483,9 @@
         <colorrole role="ButtonText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>190</red>
-           <green>190</green>
-           <blue>190</blue>
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
@@ -5937,6 +6500,14 @@
         </colorrole>
        </disabled>
       </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>Name</string>
@@ -5957,17 +6528,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -6121,17 +6692,17 @@
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>238</red>
-           <green>238</green>
-           <blue>236</blue>
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
           </color>
          </brush>
         </colorrole>
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -6294,8 +6865,8 @@
         <colorrole role="Button">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>52</red>
-           <green>255</green>
+           <red>0</red>
+           <green>0</green>
            <blue>0</blue>
           </color>
          </brush>
@@ -6447,6 +7018,14 @@
        </disabled>
       </palette>
      </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
       <string>Start</string>
      </property>
@@ -6454,7 +7033,7 @@
     <widget class="QLabel" name="labelName2">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>40</y>
        <width>41</width>
        <height>16</height>
@@ -6472,6 +7051,24 @@
           </color>
          </brush>
         </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
        </active>
        <inactive>
         <colorrole role="WindowText">
@@ -6483,19 +7080,63 @@
           </color>
          </brush>
         </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
        </inactive>
        <disabled>
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>190</red>
-           <green>190</green>
-           <blue>190</blue>
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
        </disabled>
       </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>Name</string>
@@ -6504,15 +7145,42 @@
     <widget class="QLineEdit" name="lineName2">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>62</x>
        <y>40</y>
-       <width>113</width>
+       <width>101</width>
        <height>24</height>
       </rect>
      </property>
      <property name="palette">
       <palette>
        <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
         <colorrole role="Base">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
@@ -6524,6 +7192,33 @@
         </colorrole>
        </active>
        <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
         <colorrole role="Base">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
@@ -6535,6 +7230,33 @@
         </colorrole>
        </inactive>
        <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Button">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>0</red>
+           <green>0</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="ButtonText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>26</red>
+           <green>127</green>
+           <blue>0</blue>
+          </color>
+         </brush>
+        </colorrole>
         <colorrole role="Base">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
@@ -6546,6 +7268,14 @@
         </colorrole>
        </disabled>
       </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Yu Gothic UI Semibold</family>
+       <pointsize>9</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
     </widget>
    </widget>
@@ -6562,7 +7292,7 @@
      <x>0</x>
      <y>0</y>
      <width>512</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -7008,6 +7738,9 @@
       </colorrole>
      </disabled>
     </palette>
+   </property>
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>
