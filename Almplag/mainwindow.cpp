@@ -217,6 +217,8 @@ void MainWindow::start_that_shit0()
         ui->additionalAnnotation->setText("Percent made via Wagner–Fischer algorithm. Below 70 it is not entirely accurate");
         //
 
+
+        /*
         QSqlDatabase db;
         if(!db.open())
         {
@@ -224,6 +226,7 @@ void MainWindow::start_that_shit0()
         }
         else
         {
+
             QSqlQuery query;
             db = QSqlDatabase::addDatabase("QSQLITE");
             db.setDatabaseName(QApplication::applicationDirPath() + "/database/" + ui->listWidget->currentItem()->text());
@@ -236,6 +239,7 @@ void MainWindow::start_that_shit0()
             query.bindValue(":String", QString::fromStdString(sstr));
             query.exec();
         }
+        */
     }
 }
 
