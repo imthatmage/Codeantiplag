@@ -16,7 +16,7 @@ namespace Analyzer
         "\\||!|\\=|\\+|\\-|\\*|\\/|\\%|\\~|\\&|\\>|\\<|\\^|(?:\\.)|"
         "(?:\\,)|(?:\\:)|(?:\\;)|(?:\\[)|(?:\\])|(?:\\{)|(?:\\})|(?:\\()|(?:\\))|(?:\\:)");
         //dict of special symbols and all 'id words' in text'
-        std::map<std::string, std::string> special = { { "public", "public" }, { "protected", "protected" }, { "private", "private" }, { "size_t", "size_t" }, { "wcin", "wcin" }, { "cin", "cin" }, { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
+        const std::map<std::string, std::string> special = { { "public", "public" }, { "protected", "protected" }, { "private", "private" }, { "size_t", "size_t" }, { "wcin", "wcin" }, { "cin", "cin" }, { "void", "void" }, { "bool", "bool" }, { "char", "char" }, { "signed", "signed" }, { "unsigned", "unsigned" },
         { "wchar_t", "wchar_t" }, { "char16_t", "char16_t" }, { "char32_t", "char32_t" }, { "short", "short" }, { "const", "const" }, { "int", "int" }, { "long", "long" },
         { "auto", "auto" }, { "string", "string" }, { "delete", "delete" }, { "new", "new" }, { "if", "if" }, { "while", "while" }, { "for", "for" }, { "do", "do" },
         { "using", "using" }, { "namespace", "namespace" }, { "break", "break" }, { "continue", "continue" }, { "return", "return" }, { "true", "true" },

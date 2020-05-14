@@ -6,7 +6,6 @@
 #include <QDir>
 #include <QtCore>
 #include <fstream>
-#include <QDebug>
 #include "QtSql/QSqlDatabase"
 #include "QSqlQuery"
 #include <QSqlError>
@@ -214,32 +213,8 @@ void MainWindow::start_that_shit0()
 
         //summary
         ui->summaryText->setText(percent + "% similar");
-        ui->additionalAnnotation->setText("Percent made via Wagner–Fischer algorithm. Below 70 it is not entirely accurate");
+        ui->additionalAnnotation->setText("Made by W-F algorithm. Below 70 it is not entirely accurate");
         //
-
-
-        /*
-        QSqlDatabase db;
-        if(!db.open())
-        {
-            QMessageBox::warning(this, "Warning", "Can not open " + ui->listWidget->currentItem()->text());
-        }
-        else
-        {
-
-            QSqlQuery query;
-            db = QSqlDatabase::addDatabase("QSQLITE");
-            db.setDatabaseName(QApplication::applicationDirPath() + "/database/" + ui->listWidget->currentItem()->text());
-            query.prepare("INSERT INTO " + ui->listWidget->currentItem()->text() + "(Name, String) values(:Name,:String)");
-            query.bindValue(":Name", ui->lineName->text());
-            query.bindValue(":String", QString::fromStdString(fstr));
-            query.exec();
-            query.prepare("INSERT INTO " + ui->listWidget->currentItem()->text() + "(Name, String) values(:Name,:String)");
-            query.bindValue(":Name", ui->lineName->text());
-            query.bindValue(":String", QString::fromStdString(sstr));
-            query.exec();
-        }
-        */
     }
 }
 
@@ -288,7 +263,7 @@ void MainWindow::start_that_shit1()
            //summary
            QString percent = QString::number(((1.0 - ((double)min_actions / length_sus_str)) * 100));
            ui->summaryText->setText("Most likely, this code was borrowed from " + suspect + '(' + percent + "%)");
-           ui->additionalAnnotation->setText("Percent made via Wagner–Fischer algorithm. Below 70 it is not entirely accurate");
+           ui->additionalAnnotation->setText("Made by W-F algorithm. Below 70 it is not entirely accurate");
            //
            query.prepare("INSERT INTO " + ui->listWidget->currentItem()->text() + "(Name, String) values(:Name,:String)");
            query.bindValue(":Name", ui->lineName->text());
