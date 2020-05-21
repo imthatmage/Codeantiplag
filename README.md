@@ -6,6 +6,7 @@ Program to check the file for antiplagiarism.
 3. Rename all variable's  name to special standard like id01.
 4. Comparing two string using Wagner-Fischer
 
-Antiplagcode - tests and original analyzer code.
-Antiplag - executable with all dependencies.
-Almplag - Qt files.
+About:
+1. Antiplagcode - tests and original analyzer code.
+2. Antiplag - executable with all dependencies.
+3. Almplag - Qt files.
